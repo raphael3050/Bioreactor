@@ -1,19 +1,24 @@
 package servPattern.measures;
 
-import servPattern.sensor.Sensor;
+import servPattern.ISensor;
+import servPattern.sensor.Oxygen;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Measures {
 
     private LocalDateTime localDateTime;
-    private List<Sensor> sensors;
+    private List<ISensor> ISensors;
     private String comment;
 
-    public Measures(LocalDateTime localDateTime, List<Sensor> sensors, String comment){
+    public Measures(){
+        this.ISensors = new ArrayList<>();
+    }
+    public Measures(LocalDateTime localDateTime, List<ISensor> ISensors, String comment){
         this.localDateTime = localDateTime;
-        this.sensors = sensors;
+        this.ISensors = ISensors;
         this.comment = comment;
     }
 
@@ -21,11 +26,23 @@ public class Measures {
         return localDateTime;
     }
 
-    public List<Sensor> getSensors() {
-        return sensors;
+    public List<ISensor> getSensors() {
+        return ISensors;
     }
 
     public String getComment() {
         return comment;
+    }
+
+    public void addSensors(ISensor ISensor){
+        this.ISensors.add(ISensor);
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 }
