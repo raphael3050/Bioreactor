@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ClientGUI extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ClientGUI.class.getResource("/org/example/bioreactor/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ClientGUI.class.getResource("/org/example/bioreactor/bioreactor-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
@@ -25,11 +25,5 @@ public class ClientGUI extends Application {
     public static void main(String[] args) {
         // Launch the JavaFX application
         launch();
-
-        ClientTCP myClt = new ClientTCP("localhost", 6666 );
-        if ( myClt.connecterAuServeur() ) {
-            myClt.transmettreChaine("PING");
-            myClt.deconnecterDuServeur();
-        }
     }
 }
