@@ -1,0 +1,10 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÒΛΠ§ϋÿÿÿÿ8Ώ ²ή1
+
+java:S1130/"{Remove the declaration of thrown exception 'java.io.FileNotFoundException', as it cannot be thrown from constructor's body.(ρΨν8ά ²ή1
+O
+java:S11358"2Complete the task associated to this TODO comment.(¶Α8βΎ²ή1
+a
+java:S1854M"DRemove this useless assignment to local variable "numberOfMeasures".(ρώζ8έ ²ή1
+R
+java:S1481M"5Remove this unused "numberOfMeasures" local variable.(ρώζ8ή ²ή1

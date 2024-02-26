@@ -29,7 +29,6 @@ import java.util.Map;
 
 public class FileParser {
     private String filename;
-
     private List<Measures> measuresList;
 
     public FileParser(String filename){
@@ -37,7 +36,7 @@ public class FileParser {
         this.measuresList = new ArrayList<>();
     }
 
-    public String parse() throws FileNotFoundException, IOException {
+    public List<Measures> parse() throws FileNotFoundException, IOException {
 
         try {
             FileInputStream file = new FileInputStream(new File(this.filename));
@@ -133,7 +132,7 @@ public class FileParser {
     }
 
     /**
-     * Creates a measure and adds it to the measuresList class variable.
+     * Creates a Measure object and adds it to the measuresList class variable.
      * @param localDateTime
      * @param temperature : a Temperature object
      * @param oxygen : an Oxygen object

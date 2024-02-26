@@ -1,29 +1,31 @@
 
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÓŠ‚×şÿÿÿÿ8Í¿ŒÜİ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÓŠ‚×şÿÿÿÿ8Øôäßİ1
 l
-java:S2095,"JUse try-with-resources or close this "XSSFWorkbook" in a "finally" clause.(Åù…øÿÿÿÿ8ÃÄŒÜİ1
-•
-java:S1130("xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(©¤ñŞ8ÈÄŒÜİ1
+java:S2095+"JUse try-with-resources or close this "XSSFWorkbook" in a "finally" clause.(Åù…øÿÿÿÿ8ëöæßİ1
+š
+java:S1130'"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(ï¸Äˆÿÿÿÿÿ8áãæßİ1
 H
-java:S1481/"&Remove this unused "i" local variable.(ùó›Ìøÿÿÿÿ8×ÄŒÜİ1
+java:S1481."&Remove this unused "i" local variable.(ùó›Ìøÿÿÿÿ8÷æßİ1
 T
-java:S1135>"2Complete the task associated to this TODO comment.(¾ôøÿÿÿÿ8ÚÄŒÜİ1
->	java:S131M""Add a default case to this switch.(ıäš‘8ÚÄŒÜİ1
-X	java:S125G"<This block of commented-out lines of code should be removed.(—°Æ«8ÚÄŒÜİ1
+java:S1135="2Complete the task associated to this TODO comment.(¾ôøÿÿÿÿ8ƒ÷æßİ1
+>	java:S131L""Add a default case to this switch.(ıäš‘8„÷æßİ1
+X	java:S125F"<This block of commented-out lines of code should be removed.(—°Æ«8…÷æßİ1
 N
-java:S1135E"2Complete the task associated to this TODO comment.(Ç·ñ8ÛÄŒÜİ1
-M
-java:S1905•"*Remove this unnecessary cast to "ISensor".(˜İƒ‘ûÿÿÿÿ8àÄŒÜİ1
+java:S1135D"2Complete the task associated to this TODO comment.(Ç·ñ8…÷æßİ1
 H
-java:S1905–"*Remove this unnecessary cast to "ISensor".(¿´®ú8áÄŒÜİ1
+java:S1168o"+Return an empty collection instead of null.(¥¹ï8Š÷æßİ1
 M
-java:S1905—"*Remove this unnecessary cast to "ISensor".(áØá‘úÿÿÿÿ8áÄŒÜİ1
-Y	java:S125¢"<This block of commented-out lines of code should be removed.(Çµí‘8ùÉ•Üİ1
+java:S1905”"*Remove this unnecessary cast to "ISensor".(˜İƒ‘ûÿÿÿÿ8úøäßİ1
+H
+java:S1905•"*Remove this unnecessary cast to "ISensor".(¿´®ú8úøäßİ1
+M
+java:S1905–"*Remove this unnecessary cast to "ISensor".(áØá‘úÿÿÿÿ8’÷æßİ1
+Y	java:S125¡"<This block of commented-out lines of code should be removed.(Çµí‘8“÷æßİ1
 R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8åÄŒÜİ1
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8òĞæßİ1
 R
-java:S1128"0Remove this unused import 'java.time.LocalTime'.(à®øÃùÿÿÿÿ8åÄŒÜİ1
+java:S1128"0Remove this unused import 'java.time.LocalTime'.(à®øÃùÿÿÿÿ8òĞæßİ1
 P
-java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8åÄŒÜİ1
+java:S1128".Remove this unused import 'java.util.HashMap'.(™˜”€ùÿÿÿÿ8òĞæßİ1
 L
-java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8åÄŒÜİ1
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ8òĞæßİ1

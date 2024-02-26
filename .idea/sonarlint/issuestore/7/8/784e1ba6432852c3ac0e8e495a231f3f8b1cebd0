@@ -1,0 +1,20 @@
+
+v
+java:S1104"TMake iContext a static final constant or non-public and provide accessors if needed.(ØŽáãûÿÿÿÿ8žË–ÝÝ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(”Ð¥¿úÿÿÿÿ8ŸË–ÝÝ1
+…
+java:S4165#"hRemove this useless assignment; "portNumber" already holds the assigned value along all execution paths.(åØôÀ8¥Ë–ÝÝ1
+O
+java:S1135"2Complete the task associated to this TODO comment.(æØ÷¨8©Ë–ÝÝ1
+L
+java:S1656#"/Remove or correct this useless self-assignment.(åØôÀ8«Ë–ÝÝ1
+G	java:S106E"+Replace this use of System.out by a logger.(¬ÌŸÁ8±Ë–ÝÝ1
+G	java:S106L"+Replace this use of System.out by a logger.(ƒÄí–8±Ë–ÝÝ1
+X
+java:S2696N"6Make the enclosing method "static" or remove this set.(øÝºîÿÿÿÿÿ8²Ë–ÝÝ1
+F	java:S106O"+Replace this use of System.out by a logger.(Éšœ^8²Ë–ÝÝ1
+L	java:S106Q"+Replace this use of System.out by a logger.(Á®òºøÿÿÿÿ8²Ë–ÝÝ1
+G	java:S106^"+Replace this use of System.out by a logger.(ÀÔŒø8ÐË–ÝÝ1
+X
+java:S2696b"6Make the enclosing method "static" or remove this set.(ì¹­£ýÿÿÿÿ8ÐË–ÝÝ1
+G	java:S106d"+Replace this use of System.out by a logger.(Þ¤±ì8ÑË–ÝÝ1
