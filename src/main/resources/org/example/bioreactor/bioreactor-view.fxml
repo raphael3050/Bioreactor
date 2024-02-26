@@ -2,18 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.bioreactor.client.ClientController">
    <top>
@@ -29,7 +30,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="connecté">
+                  <Text fx:id="connectionStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="connecté">
                      <HBox.margin>
                         <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                      </HBox.margin>
@@ -37,15 +38,15 @@
                         <Font name="Helvetica Neue" size="13.0" />
                      </font>
                   </Text>
-                  <Circle fill="#1fff3e" radius="5.0" stroke="#ffffff00" strokeType="INSIDE" />
+                  <Circle fx:id="connectionStatusCircle" fill="#1fff3e" radius="5.0" stroke="#ffffff00" strokeType="INSIDE" />
                </children>
             </HBox>
-            <Button fx:id="deconnexionButton" mnemonicParsing="false" text="Déconnexion" textAlignment="CENTER">
+            <Button fx:id="deconnexionButton" onAction="#onDeconnectionButtonClick" mnemonicParsing="false" text="Déconnexion" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="connexionButton" mnemonicParsing="false" text="Connexion" textAlignment="CENTER">
+            <Button fx:id="connexionButton" onAction="#onConnectionButtonClick" mnemonicParsing="false" text="Connexion" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -83,11 +84,42 @@
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <TextField />
-                  <Button mnemonicParsing="false" text="Envoyer" />
-                  <ChoiceBox prefWidth="150.0" />
+                  <Button mnemonicParsing="false" prefHeight="26.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" top="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-play-100.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button layoutX="30.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="20.0" top="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/icons8-pause-100.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <HBox fx:id="messageLoggerHbox" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextFlow fx:id="connectionErrorMsg" styleClass="alert, alert-danger" textAlignment="CENTER">
+                           <Text styleClass="strong" text="Erreur!" />
+                           <Text text=" La connexion au serveur a échoué" />
+                           <HBox.margin>
+                              <Insets bottom="20.0" right="20.0" />
+                           </HBox.margin>
+                        </TextFlow>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
