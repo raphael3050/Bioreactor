@@ -1,4 +1,4 @@
-package servPattern.sensor;
+package org.example.bioreactor.server.sensor;
 
 public class Sensor {
 

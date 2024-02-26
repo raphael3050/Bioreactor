@@ -1,6 +1,6 @@
-package servPattern.fileParser;
+package org.example.bioreactor.server.fileParser;
 
-import servPattern.measures.Measures;
+import org.example.bioreactor.server.measures.Measures;
 
 import java.util.List;
 

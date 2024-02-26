@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.kordamp.bootstrapfx.BootstrapFX;
+
 
 import java.io.IOException;
 
@@ -14,6 +16,7 @@ public class ClientGUI extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientGUI.class.getResource("/org/example/bioreactor/hello-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Bioreactor");
         stage.setScene(scene);
         stage.show();

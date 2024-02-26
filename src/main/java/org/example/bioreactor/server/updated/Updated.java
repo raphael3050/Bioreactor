@@ -1,7 +1,7 @@
-package servPattern.updated;
+package org.example.bioreactor.server.updated;
 
-import servPattern.sensor.Sensor;
-import servPattern.serverException.SensorException;
+import org.example.bioreactor.server.sensor.Sensor;
+import org.example.bioreactor.server.serverException.SensorException;
 
 import java.time.LocalDateTime;
 import java.util.List;

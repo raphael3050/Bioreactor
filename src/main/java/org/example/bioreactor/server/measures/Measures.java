@@ -1,6 +1,6 @@
-package servPattern.measures;
+package org.example.bioreactor.server.measures;
 
-import servPattern.sensor.Sensor;
+import org.example.bioreactor.server.sensor.Sensor;
 
 import java.time.LocalDateTime;
 import java.util.List;
