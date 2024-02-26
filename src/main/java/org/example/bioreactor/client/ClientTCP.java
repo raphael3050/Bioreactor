@@ -34,18 +34,15 @@ public class ClientTCP {
 			socOut = new PrintStream(socketServeur.getOutputStream());
 			socIn = new BufferedReader ( 
 					new InputStreamReader (socketServeur.getInputStream()));
+			System.out.println("Connexion établie");
 			ok = true;
 		} catch (UnknownHostException e) {
 			System.err.println("Serveur inconnu : " + e);
-
 		} catch (ConnectException e) {
-			System.err.println("Exception lors de la connexion:" + e);
-			e.printStackTrace();
-
+			System.err.println("Exception lors de la connexion:" + e.getLocalizedMessage());
 		} catch (IOException e) {
-			System.err.println("Exception lors de l'echange de donnees:" + e);
+			System.err.println("Exception lors de l'echange de donnees:" + e.getLocalizedMessage());
 		}
-		System.out.println("Connexion faite");
 		return ok;
 	} 	
 	
