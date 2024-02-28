@@ -18,7 +18,13 @@ public class ClientTCP {
 
 	private PrintStream socOut;
 
-	private BufferedReader socIn;	
+	private BufferedReader socIn;
+
+	private enum Command {
+		PLAY,
+		PAUSE,
+
+	}
 	
 	/** Un client se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
 	public  ClientTCP(String unNomServeur, int unNumero) {        
@@ -69,8 +75,7 @@ public class ClientTCP {
 		} catch (UnknownHostException e) {
 			System.err.println("Serveur inconnu : " + e);
 		} catch (IOException e) {
-			System.err.println("Exception entree/sortie:  " + e);
-			e.printStackTrace();
+			System.err.println("Exception entree/sortie:  " + e.getLocalizedMessage());
 		}
 		return msgServeur;
 	} 
@@ -78,15 +83,15 @@ public class ClientTCP {
 	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */
 	public String transmettreChaineConnexionPonctuelle(String uneChaine) {
 		String msgServeur = null;
-		String chaineRetour = "";
+		StringBuilder chaineRetour = new StringBuilder();
 		System.out.println("\nClient connexionTransmettreChaine " + uneChaine);
-		if (connecterAuServeur() == true) {
+		if (connecterAuServeur()) {
 			try {
 				socOut.println(uneChaine);
 				socOut.flush();
 				msgServeur = socIn.readLine();
-				while( msgServeur != null && msgServeur.length() >0) {
-					chaineRetour += msgServeur + "\n";
+				while( msgServeur != null && !msgServeur.isEmpty()) {
+					chaineRetour.append(msgServeur).append("\n");
 					msgServeur = socIn.readLine();
 				}
 				System.out.println("Client msgServeur " + chaineRetour);
@@ -99,7 +104,7 @@ public class ClientTCP {
 		{	
 			System.err.println("Connexion echouee");
 		}
-		return chaineRetour;
+		return chaineRetour.toString();
 	}
 	
 }
