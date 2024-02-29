@@ -1,34 +1,12 @@
 
-O
-main/java/client/ClientTCP.java,3/9/39339c8ba4b4b942331608368140e0184875acdb
-X
-(main/java/launchPattern/MainServeur.java,b/5/b5051b98df11ebf6daed1e0fc11323a209cec72b
-^
-.main/java/launchPattern/ProtocolePingPong.java,d/2/d21ab30cc128562dc112d6d98ec6b1090d5aa8d0
-W
-'main/java/launchPattern/MainClient.java,f/6/f654f2b9c7eeb7ac7c48f1c8cd5a1e06f8af7cea
-W
-'main/java/launchPattern/UnContexte.java,9/a/9a59932c4e10f3276727e0324d6e3add5db422c3
-U
-%main/java/servPattern/ServeurTCP.java,6/c/6c99b9a97e8a8fc3c2c54c98d2627bf8d5ff48bc
-_
-/main/java/servPattern/ProcessusTransaction.java,c/4/c45c7ccbe74794b1bb272eea1ea89ceb23c96432
-T
-$main/java/servPattern/Tank/Tank.java,f/b/fb5651cda599b4c28a6f255c0f4953b6657c8022
 T
 $main/java/servPattern/tank/Tank.java,0/f/0f71183d50ea27b221694596e1b8c828db4c814b
-X
-(main/java/servPattern/change/Change.java,8/a/8a91679b9139e5ac0a6298109e2eb30891dbc9bf
 X
 (main/java/servPattern/sensor/Sensor.java,2/8/2893b75e94caa44684aba88187501259f185c99a
 j
 :main/java/servPattern/serverException/SensorException.java,6/f/6fa10ecc8dc3309192309991e0283c17d0fda55d
-S
-#main/java/servPattern/IContext.java,b/a/baeb50fc73f4140b4452ae43974008e78d9bda9b
 \
 ,main/java/servPattern/measures/Measures.java,f/1/f116fc5191828c6c37573a4e792fbd1bb9535307
-Y
-)main/java/servPattern/updated/Change.java,2/8/2820254663b0c6674ff9791762493c6ba13588bb
 Z
 *main/java/servPattern/updated/Updated.java,1/b/1b6881a96626896387d40bbade5a685d77e275e6
 `

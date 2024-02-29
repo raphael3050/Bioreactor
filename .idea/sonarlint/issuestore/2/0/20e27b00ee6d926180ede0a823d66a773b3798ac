@@ -1,0 +1,7 @@
+
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş÷ÅÀ8üŒİßİ1
+m	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Àıİ­8üŒİßİ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(™š­’øÿÿÿÿ8÷¸£œÜ1
+o	java:S116"SRename this field "ISensors" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£²ßÊ8ÿŒİßİ1
+S
+java:S1128"6Remove this unused import 'servPattern.sensor.Oxygen'.(ÖÄ–›8ƒİßİ1
