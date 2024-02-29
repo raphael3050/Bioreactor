@@ -1,6 +1,7 @@
 package org.example.bioreactor.server.sensor;
 
-import servPattern.ISensor;
+
+import org.example.bioreactor.server.ISensor;
 
 public class Oxygen implements ISensor {
 

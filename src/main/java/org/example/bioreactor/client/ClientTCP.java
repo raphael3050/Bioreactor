@@ -20,7 +20,7 @@ public class ClientTCP {
 
 	private BufferedReader socIn;
 
-	private enum Command {
+	public enum Command {
 		PLAY,
 		PAUSE,
 

@@ -9,6 +9,7 @@ module org.example.bioreactor {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
     requires json.simple;
+    requires java.desktop;
 
     exports org.example.bioreactor.client;
     opens org.example.bioreactor.client to javafx.fxml;
