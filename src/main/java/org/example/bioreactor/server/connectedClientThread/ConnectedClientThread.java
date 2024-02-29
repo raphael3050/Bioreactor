@@ -45,11 +45,11 @@ public class ConnectedClientThread extends Thread {
                 os.println(outputReq + "\n");
                 os.flush();
 
-                //TODO ADJUST THE DATA
+/*                //TODO ADJUST THE DATA
                 int delayMS = 1000;
                 if ( chaines[0].equals("demandeRetrait") ) {
                     etat = 1;
-                    myServer.getIContext().play(clientSocket, delayMS);
+                    //myServer.getIContext().play(clientSocket, delayMS);
                     System.out.println( outputReq + " val de etat " + etat );
 
                 } else if ( chaines[0].equals("demandeDepot") ) {
@@ -58,16 +58,16 @@ public class ConnectedClientThread extends Thread {
                     System.out.println( outputReq + " val de etat " + etat );
                 } else if ( chaines[0].equals("stop") ) {
                     etat = 3;
-                    myServer.getIContext().goForward();
+                    //myServer.getIContext().goForward();
                     System.out.println( outputReq + " val de etat " + etat );
                 } else if(){
                     etat = 4;
-                    myServer.getIContext().goBackwards();
+                    //myServer.getIContext().goBackwards();
                     System.out.println( outputReq + " val de etat " + etat );
                 } else if() {
                     etat = 0;
                     myServer.getIContext().stop();
-                }
+                }*/
 
             }
 

@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.kordamp.bootstrapfx.BootstrapFX;
 
-
 import java.io.IOException;
 
 public class ClientGUI extends Application {
@@ -16,6 +15,7 @@ public class ClientGUI extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ClientGUI.class.getResource("/org/example/bioreactor/bioreactor-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
+        // Bootstrap css stylesheet for JavaFX
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setTitle("Bioreactor");
         stage.setScene(scene);

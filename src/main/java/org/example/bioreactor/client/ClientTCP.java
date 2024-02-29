@@ -7,8 +7,12 @@ import java.io.PrintStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Objects;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
-public class ClientTCP {
+public class ClientTCP  {
+
 
 	private int numeroPort;
 
@@ -20,16 +24,21 @@ public class ClientTCP {
 
 	private BufferedReader socIn;
 
-	private enum Command {
-		PLAY,
-		PAUSE,
+	private ClientController clientController;
 
+	private DataStorage dataStorage;
+
+	public enum Command {
+		PLAY,
+		END_OF_SIMULATION,
 	}
 	
 	/** Un client se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
-	public  ClientTCP(String unNomServeur, int unNumero) {        
+	public  ClientTCP(ClientController myController, String unNomServeur, int unNumero, DataStorage.DataType communicationType){
+		clientController = myController;
 		numeroPort = unNumero;
 		nomServeur = unNomServeur;
+		dataStorage = new DataStorage(communicationType);
 	} 
 
 	public boolean connecterAuServeur() {        
@@ -64,20 +73,27 @@ public class ClientTCP {
 	} 	
 	
 	public String transmettreChaine(String uneChaine) {        
-		String msgServeur = null;
+		String dataReceived = null;
 		try {
 			System.out.println( "Requete client : " + uneChaine );
 			socOut.println( uneChaine );
 			socOut.flush();
-			msgServeur = socIn.readLine();
-			System.out.println( "Reponse serveur : " + msgServeur );
+			while(!Objects.equals(socIn.readLine(), Command.END_OF_SIMULATION.toString()))
+			{
+				dataReceived = socIn.readLine();
+				dataStorage.addData(dataReceived);
+				// TODO : Ajouter la donnée reçue au tableau de l'IHM
+
+				clientController.addDataToTable(dataReceived);
+			}
+			System.out.println( "Reponse serveur : " + dataReceived );
 
 		} catch (UnknownHostException e) {
 			System.err.println("Serveur inconnu : " + e);
 		} catch (IOException e) {
 			System.err.println("Exception entree/sortie:  " + e.getLocalizedMessage());
 		}
-		return msgServeur;
+		return dataReceived;
 	} 
 
 	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */

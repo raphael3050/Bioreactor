@@ -41,12 +41,12 @@
                   <Circle fx:id="connectionStatusCircle" fill="#1fff3e" radius="5.0" stroke="#ffffff00" strokeType="INSIDE" />
                </children>
             </HBox>
-            <Button fx:id="deconnexionButton" onAction="#onDeconnectionButtonClick" mnemonicParsing="false" text="Déconnexion" textAlignment="CENTER">
+            <Button fx:id="deconnexionButton" mnemonicParsing="false" onAction="#onDeconnectionButtonClick" text="Déconnexion" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="connexionButton" onAction="#onConnectionButtonClick" mnemonicParsing="false" text="Connexion" textAlignment="CENTER">
+            <Button fx:id="connexionButton" mnemonicParsing="false" onAction="#onConnectionButtonClick" text="Connexion" textAlignment="CENTER">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -86,7 +86,7 @@
             </Text>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0">
+                  <Button fx:id="playButton" mnemonicParsing="false" onAction="#onPlayButtonClick" prefHeight="26.0">
                      <HBox.margin>
                         <Insets bottom="20.0" left="20.0" top="10.0" />
                      </HBox.margin>
@@ -112,8 +112,8 @@
                   <HBox fx:id="messageLoggerHbox" alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
                         <TextFlow fx:id="connectionErrorMsg" styleClass="alert, alert-danger" textAlignment="CENTER">
-                           <Text styleClass="strong" text="Erreur!" />
-                           <Text text=" La connexion au serveur a échoué" />
+                           <Text styleClass="strong" text="Erreur! " />
+                           <Text fx:id="errorMsgContent" text=" La connexion au serveur a échoué" />
                            <HBox.margin>
                               <Insets bottom="20.0" right="20.0" />
                            </HBox.margin>
