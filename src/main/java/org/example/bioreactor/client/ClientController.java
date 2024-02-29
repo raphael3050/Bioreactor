@@ -13,13 +13,15 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ClientController implements Initializable {
+public class ClientController implements Initializable, PropertyChangeListener {
     public Button connexionButton;
     public Button deconnexionButton;
-    public TableView dataTable;
+    public TableView<Data> dataTable;
     public Text connectionStatus;
     public Circle connectionStatusCircle;
     public HBox messageLoggerHbox;
@@ -37,7 +39,6 @@ public class ClientController implements Initializable {
 
     @FXML
     protected void onConnectionButtonClick() {
-        this.myClt = new ClientTCP(this,"localhost", 6666, DataStorage.DataType.JSON);
         if (myClt.connecterAuServeur()) {
             this.connectionStatus.setText("connecté");
             this.connectionStatusCircle.setFill(Color.GREEN);
@@ -74,13 +75,15 @@ public class ClientController implements Initializable {
     }
 
     @FXML
-    protected void addDataToTable(String data) {
-        // TODO implement
+    protected void addDataToTable(Data data) {
+        this.dataTable.getItems().add(data);
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.myClt = new ClientTCP("localhost", 6666, DataStorage.DataType.JSON);
+        this.myClt.getDataStorage().getPropertyChangeSupport().addPropertyChangeListener(this);
         this.connexionButton.getStyleClass().add("btn");
         this.deconnexionButton.getStyleClass().add("btn");
         this.connectionStatus.setText("deconnecté");
@@ -90,5 +93,15 @@ public class ClientController implements Initializable {
         this.connectionErrorMsg.setVisible(false);
         this.connectionErrorMsg.setDisable(true);
         this.errorMsgContent.setText("");
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getSource() instanceof DataStorage) {
+            if (evt.getPropertyName().equals("new_data")) {
+                Data data = (Data) evt.getNewValue();
+                this.addDataToTable(data);
+            }
+        }
     }
 }

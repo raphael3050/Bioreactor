@@ -24,7 +24,7 @@ public class ClientTCP  {
 
 	private BufferedReader socIn;
 
-	private ClientController clientController;
+
 
 	private DataStorage dataStorage;
 
@@ -34,12 +34,16 @@ public class ClientTCP  {
 	}
 	
 	/** Un client se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
-	public  ClientTCP(ClientController myController, String unNomServeur, int unNumero, DataStorage.DataType communicationType){
-		clientController = myController;
+	public  ClientTCP(String unNomServeur, int unNumero, DataStorage.DataType communicationType){
 		numeroPort = unNumero;
 		nomServeur = unNomServeur;
 		dataStorage = new DataStorage(communicationType);
-	} 
+	}
+
+
+	public DataStorage getDataStorage() {
+		return dataStorage;
+	}
 
 	public boolean connecterAuServeur() {        
 		boolean ok = false;
@@ -82,9 +86,6 @@ public class ClientTCP  {
 			{
 				dataReceived = socIn.readLine();
 				dataStorage.addData(dataReceived);
-				// TODO : Ajouter la donnée reçue au tableau de l'IHM
-
-				clientController.addDataToTable(dataReceived);
 			}
 			System.out.println( "Reponse serveur : " + dataReceived );
 

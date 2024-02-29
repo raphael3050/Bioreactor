@@ -17,7 +17,7 @@ public class DataStorage {
 
     private final PropertyChangeSupport pcs;
 
-    private List<Object> data;
+    private List<Data> data;
     private StrategyDataParser parser;
 
     public DataStorage(DataType type){
@@ -28,15 +28,15 @@ public class DataStorage {
 
     public void addData(String data){
         this.data.add(parser.parseData(data));
-        pcs.firePropertyChange("new_data", null,this.data);
+        pcs.firePropertyChange("new_data", null,this.data.get(this.data.size()-1));
     }
 
 
-    public List<Object> getData() {
+    public List<Data> getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(List<Data> data) {
         this.data = data;
     }
 
@@ -49,5 +49,9 @@ public class DataStorage {
             default:
                 throw new IllegalArgumentException("** Invalid data type");
         }
+    }
+
+    public PropertyChangeSupport getPropertyChangeSupport() {
+        return this.pcs;
     }
 }

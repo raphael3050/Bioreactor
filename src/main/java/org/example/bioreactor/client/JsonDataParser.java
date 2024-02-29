@@ -7,14 +7,13 @@ import org.json.simple.parser.ParseException;
 public class JsonDataParser implements StrategyDataParser{
 
     private final JSONParser parser = new JSONParser();
-
     private String date;
     private Double temperature;
     private Double oxygen;
     private Double ph;
 
     @Override
-    public Object parseData(String data){
+    public Data parseData(String data){
         try {
             JSONObject jsonObject = (JSONObject) parser.parse(data);
             date = (String) jsonObject.get("date");
@@ -24,27 +23,7 @@ public class JsonDataParser implements StrategyDataParser{
         } catch (ClassCastException | NumberFormatException | org.json.simple.parser.ParseException e) {
             System.err.println(e.getLocalizedMessage());
         }
-        return this;
-    }
-
-    @Override
-    public String getDate() {
-        return date;
-    }
-
-    @Override
-    public Double getTemperature() {
-        return temperature;
-    }
-
-    @Override
-    public Double getOxygen() {
-        return oxygen;
-    }
-
-    @Override
-    public Double getPh() {
-        return ph;
+        return new Data(date, temperature, oxygen, ph);
     }
 
 }
