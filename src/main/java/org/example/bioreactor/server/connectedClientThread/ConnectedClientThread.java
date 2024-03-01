@@ -40,7 +40,7 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
     }
 
     public void run() {
-        String inputReq,outputReq;
+        String inputReq;
 
         BufferedReader is = null;
         PrintStream os = null;
@@ -56,7 +56,6 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                 String[] chaines = inputReq.split(" ");
                 System.out.println("Message reçu : "+Arrays.toString(chaines));
                 this.chaines = inputReq.split(" ");
-                outputReq = "Server Log :\n";
 
 
                 //TODO ADJUST THE DATA
@@ -64,23 +63,19 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                     this.etat = 1;
                     int delayS = Integer.parseInt(this.chaines[1]);
                     this.myServer.getIContext().play(clientSocket, delayS);
-                    System.out.println(outputReq + " val de etat " + etat);
                     this.resetChaines();
 
                 } else if (chaines[0].equals("pause")) {        //pause
                     etat = 2;
                     myServer.getIContext().pause();
-                    System.out.println(outputReq + " val de etat " + etat);
                     this.resetChaines();
                 } else if (chaines[0].equals("forward")) {      //forward
                     etat = 3;
                     myServer.getIContext().goForward();
-                    System.out.println(outputReq + " val de etat " + etat);
                     this.resetChaines();
                 } else if (chaines[0].equals("backwards")) {    //backwards
                     etat = 4;
                     myServer.getIContext().goBackwards();
-                    System.out.println(outputReq + " val de etat " + etat);
                     this.resetChaines();
                 } else if (chaines[0].equals("stop")) {         //stop
                     etat = 0;
@@ -139,8 +134,8 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt){
-        if (evt.getPropertyName().equals(Command.END_OF_TRANSMISSION)){
-            this.endOfTransmission = (Boolean)evt.getNewValue();
+        if (evt.getPropertyName().equals(Command.END_OF_TRANSMISSION)) {
+            this.endOfTransmission = (Boolean) evt.getNewValue();
         }
     }
 

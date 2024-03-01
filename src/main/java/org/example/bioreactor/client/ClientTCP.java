@@ -84,7 +84,6 @@ public class ClientTCP  {
 			System.out.println( "[Requete client] : " + uneChaine );
 			socOut.println( uneChaine );
 			socOut.flush();
-			socOut.println(dataReceived);
 			boolean endOfTransmission = false;
 			while(!endOfTransmission)
 			{
