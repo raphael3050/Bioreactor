@@ -23,8 +23,7 @@ public class TCPServer extends Thread {
 
     // Initialisation d'une expérimentation
     //TODO revoir
-    private IContext iContext = new Experimentation() {
-    };
+    private IContext iContext;
 
     private int nbConnexions;
 
@@ -38,6 +37,16 @@ public class TCPServer extends Thread {
 
         numeroPort = unNumeroPort;
         maxConnexions = maxClients;
+    }
+
+    public TCPServer(int unNumeroPort, String filename){
+        this.numeroPort = unNumeroPort;
+        this.maxConnexions = maxClients;
+        try {
+            this.iContext = new Experimentation(filename);
+        } catch (FileNotFoundException e){
+            System.out.println("The file you are trying to access could not be found");
+        }
     }
 
 
@@ -79,7 +88,7 @@ public class TCPServer extends Thread {
                 ConnectedClientThread st = new ConnectedClientThread( clientSocket , this );
                 st.start();
             }
-            System.out.println("Deja " + nbConnexions + " clients. Maximum autoris� atteint");
+            System.out.println("Already " + nbConnexions + " clients. Maximum allowed reached");
 
         }
 

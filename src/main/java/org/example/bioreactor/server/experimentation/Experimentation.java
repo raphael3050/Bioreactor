@@ -10,6 +10,7 @@ import org.example.bioreactor.server.sensor.Temperature;
 import org.example.bioreactor.server.serverException.EndOfSimulationException;
 import org.example.bioreactor.server.serverException.StartOfSimulationException;
 
+import java.beans.PropertyChangeSupport;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -26,6 +27,10 @@ public class Experimentation implements IContext {
     private List<Measures> measuresList;
     private Measures lastUpdate;
     private ScheduledExecutorService scheduler;
+    private enum transmit {
+        END_OF_TRANSMISSION
+    }
+    private PropertyChangeSupport pcs;
 
     private int indice; //indice related to which file is being read.
 
@@ -34,14 +39,8 @@ public class Experimentation implements IContext {
         this.measuresList = fp.getMeasuresList();
         this.indice = 0;
         scheduler = Executors.newSingleThreadScheduledExecutor();
+        pcs = new PropertyChangeSupport(this);
 
-    }
-
-    public Experimentation(List<Measures> measuresList, Measures lastUpdate){
-        this.measuresList = measuresList;
-        this.lastUpdate = lastUpdate;
-        this.indice = 0;
-        scheduler = Executors.newSingleThreadScheduledExecutor();
     }
 
     public Experimentation(String filename) throws FileNotFoundException {
@@ -49,9 +48,20 @@ public class Experimentation implements IContext {
         this.measuresList = fp.getMeasuresList();
         this.indice = 0;
         scheduler = Executors.newSingleThreadScheduledExecutor();
-
+        pcs = new PropertyChangeSupport(this);
     }
 
+    public Experimentation(List<Measures> measuresList, Measures lastUpdate){
+        this.measuresList = measuresList;
+        this.lastUpdate = lastUpdate;
+        this.indice = 0;
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        pcs = new PropertyChangeSupport(this);
+    }
+
+    public PropertyChangeSupport getPropertyChangeSupport() {
+        return this.pcs;
+    }
 
     //TODO remove this method?
     /**
@@ -102,7 +112,7 @@ public class Experimentation implements IContext {
         //reset the indice once the end of the simulation is reached
         if (this.indice == this.measuresList.size() - 1){
             this.resetIndice();
-            throw new EndOfSimulationException("End of simulation reached");
+            throw new EndOfSimulationException("INFO: End of simulation reached");
         }
     }
 
@@ -123,6 +133,7 @@ public class Experimentation implements IContext {
     public void stop(){
         this.scheduler.shutdown();
         this.resetIndice();
+        this.pcs.firePropertyChange("END_OF_TRANSMISSION", false, true);
     }
 
 
@@ -134,7 +145,7 @@ public class Experimentation implements IContext {
     @Override
     public Measures goForward() throws EndOfSimulationException {
         if (this.indice == this.measuresList.size() - 1){
-            throw new EndOfSimulationException("The simulation reached its last values");
+            throw new EndOfSimulationException("INFO: The simulation reached its last values");
         }
         this.indice++;
         return this.measuresList.get(this.indice);
@@ -150,7 +161,7 @@ public class Experimentation implements IContext {
     @Override
     public Measures goBackwards() throws StartOfSimulationException {
         if (this.indice == 0) {
-            throw new StartOfSimulationException("The simulation reached its first measure");
+            throw new StartOfSimulationException("INFO: The simulation reached its first measure");
         }
         this.indice--;
         return this.measuresList.get(this.indice);

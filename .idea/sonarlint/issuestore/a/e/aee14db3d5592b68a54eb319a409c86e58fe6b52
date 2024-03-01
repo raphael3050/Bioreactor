@@ -1,0 +1,31 @@
+
+J
+java:S3740"/Provide the parametrized type for this generic.(çÖ şÿÿÿÿ
+k	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ
+q
+java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã
+x
+java:S1104"]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ
+p
+java:S1104"UMake dataTable a static final constant or non-public and provide accessors if needed.(çÖ şÿÿÿÿ
+w
+java:S1104"\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ
+}
+java:S1104"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ
+x
+java:S1104"]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ
+t
+java:S1104 "^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ
+P
+java:S1128"5Remove this unused import 'javafx.event.ActionEvent'.(î•¯¼ıÿÿÿÿ
+L
+java:S1128"6Remove this unused import 'javafx.event.EventHandler'.(º»û˜
+R
+java:S1128
+"7Remove this unused import 'javafx.scene.control.Label'.(ö²­ÿÿÿÿÿ
+X
+java:S1128"BRemove this unused import 'javafx.scene.layout.ColumnConstraints'.(Ñî²ı
+U
+java:S1128"?Remove this unused import 'javafx.scene.layout.RowConstraints'.(ìÕÔ©
+K
+java:S1128"5Remove this unused import 'javafx.scene.paint.Paint'.(Ïæ©¼
