@@ -24,7 +24,7 @@ public class ClientTCP  {
 
 	private BufferedReader socIn;
 
-
+	private boolean isConnected = false;
 
 	private DataStorage dataStorage;
 
@@ -54,6 +54,7 @@ public class ClientTCP  {
 			socIn = new BufferedReader ( 
 					new InputStreamReader (socketServeur.getInputStream()));
 			System.out.println("Connexion établie");
+			this.isConnected = true;
 			ok = true;
 		} catch (UnknownHostException e) {
 			System.err.println("Serveur inconnu : " + e);
@@ -71,6 +72,7 @@ public class ClientTCP  {
 			socOut.close();
 			socIn.close();
 			socketServeur.close();
+			this.isConnected = false;
 		} catch (Exception e) {
 			System.err.println("Exception lors de la deconnexion :  " + e);
 		}
@@ -79,15 +81,17 @@ public class ClientTCP  {
 	public String transmettreChaine(String uneChaine) {        
 		String dataReceived = null;
 		try {
-			System.out.println( "Requete client : " + uneChaine );
+			System.out.println( "[Requete client] : " + uneChaine );
 			socOut.println( uneChaine );
 			socOut.flush();
+			socOut.println(dataReceived);
 			while(!Objects.equals(socIn.readLine(), Command.END_OF_SIMULATION.toString()))
 			{
 				dataReceived = socIn.readLine();
+				System.out.println( "[Réponse serveur] : " + dataReceived );
 				dataStorage.addData(dataReceived);
 			}
-			System.out.println( "Reponse serveur : " + dataReceived );
+
 
 		} catch (UnknownHostException e) {
 			System.err.println("Serveur inconnu : " + e);
@@ -95,33 +99,9 @@ public class ClientTCP  {
 			System.err.println("Exception entree/sortie:  " + e.getLocalizedMessage());
 		}
 		return dataReceived;
-	} 
-
-	/* A utiliser pour ne pas deleguer la connexion aux interfaces GUI */
-	public String transmettreChaineConnexionPonctuelle(String uneChaine) {
-		String msgServeur = null;
-		StringBuilder chaineRetour = new StringBuilder();
-		System.out.println("\nClient connexionTransmettreChaine " + uneChaine);
-		if (connecterAuServeur()) {
-			try {
-				socOut.println(uneChaine);
-				socOut.flush();
-				msgServeur = socIn.readLine();
-				while( msgServeur != null && !msgServeur.isEmpty()) {
-					chaineRetour.append(msgServeur).append("\n");
-					msgServeur = socIn.readLine();
-				}
-				System.out.println("Client msgServeur " + chaineRetour);
-				deconnecterDuServeur();
-			} catch (Exception e) {
-				System.err.println("Exception lors de la connexion client:  " + e);
-			}
-		}
-		else
-		{	
-			System.err.println("Connexion echouee");
-		}
-		return chaineRetour.toString();
 	}
-	
+
+	public boolean isConnected() {
+		return isConnected;
+	}
 }

@@ -20,6 +20,10 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
     int etat = 0;
     private boolean endOfTransmission = false;
 
+    public enum Command {
+        PLAY,
+    }
+
     public ConnectedClientThread( Socket aClientSocket , TCPServer aServer ) {
         clientSocket = aClientSocket;
         myServer = aServer;
@@ -42,20 +46,21 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
             System.out.println( "Client Thread " );
 
+            // TODO : Debug this section, it is not working as expected
             while ( (inputReq = is.readLine()) != null && etat != 3 ) {
-                System.out.println(" Msg 2 Recu " + inputReq);
+                System.out.println(" Message reçu : " + inputReq);
                 String chaines[] = inputReq.split(" ");
-                outputReq = "Msg From Server ";
+                outputReq = "Server Log :\n";
 
                 for (int i = 0; i < chaines.length; i++) {
-                    outputReq = outputReq + " Indice : " + i + " Mot : " + chaines[i];
+                    outputReq = outputReq + " - [Indice : " + i + "]\n - [Mot : " + chaines[i]+"]\n";
                     System.out.println(outputReq);
                 }
-                os.println(outputReq + "\n");
-                os.flush();
+                //os.println(outputReq + "\n");
+                //os.flush();
 
                 //TODO ADJUST THE DATA
-                if (chaines[0].equals("play")) {                //play
+                if (chaines[0].equals(Command.PLAY.toString())) {                //play
                     etat = 1;
                     int delayS = Integer.parseInt(chaines[1]);
                     myServer.getIContext().play(clientSocket, delayS);
@@ -90,7 +95,39 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
             clientSocket.close();
             os.close();
             is.close();
+            // TODO : Change the printStrackTrace to System.err.println(e.getLocalizedMessage()
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (EndOfSimulationException e){
+            String message = e.getMessage();
+            os.println("INFO " + message);
+            os.println("END_OF_TRANSMISSION");
+            os.close();
+            try {
+                is.close();
+            } catch (IOException err){
+                err.printStackTrace();;
+            }
+
+        } catch (StartOfSimulationException e){
+            String message = e.getMessage();
+            os.println("INFO " + message);
+            os.close();
+            try {
+                is.close();
+            } catch (IOException err){
+                err.printStackTrace();
+            }
+        } catch (NumberFormatException e){
+            os.println("The delay you have sent should be an integer");
+            os.close();
+            try {
+                is.close();
+            } catch (IOException err){
+                err.printStackTrace();
+            }
+        }
         //EXCEPTIONS MANAGEMENT
         } catch (IOException e) {
             e.printStackTrace();

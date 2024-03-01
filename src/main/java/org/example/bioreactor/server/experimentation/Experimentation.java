@@ -34,26 +34,10 @@ public class Experimentation implements IContext {
 
     private int indice; //indice related to which file is being read.
 
-    public Experimentation(){
-        FileParser fp = new FileParser("2022-10-03-Act2-1.xlsx");
-        this.measuresList = fp.getMeasuresList();
-        this.indice = 0;
-        scheduler = Executors.newSingleThreadScheduledExecutor();
-        pcs = new PropertyChangeSupport(this);
-
-    }
-
-    public Experimentation(String filename) throws FileNotFoundException {
+    public Experimentation(String filename) throws IOException {
         FileParser fp = new FileParser(filename);
+        fp.parse();
         this.measuresList = fp.getMeasuresList();
-        this.indice = 0;
-        scheduler = Executors.newSingleThreadScheduledExecutor();
-        pcs = new PropertyChangeSupport(this);
-    }
-
-    public Experimentation(List<Measures> measuresList, Measures lastUpdate){
-        this.measuresList = measuresList;
-        this.lastUpdate = lastUpdate;
         this.indice = 0;
         scheduler = Executors.newSingleThreadScheduledExecutor();
         pcs = new PropertyChangeSupport(this);
@@ -84,7 +68,6 @@ public class Experimentation implements IContext {
      */
     @Override
     public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
-        int numberOfMeasures = this.measuresList.size();
         PrintStream os;
         try {
             os = new PrintStream(clientSocket.getOutputStream());

@@ -46,6 +46,8 @@ public class TCPServer extends Thread {
             this.iContext = new Experimentation(filename);
         } catch (FileNotFoundException e){
             System.out.println("The file you are trying to access could not be found");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

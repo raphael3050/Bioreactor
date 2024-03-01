@@ -32,19 +32,24 @@ public class ClientController implements Initializable, PropertyChangeListener {
 
     @FXML
     protected void onDeconnectionButtonClick() {
-        this.myClt.deconnecterDuServeur();
-        this.connectionStatus.setText("déconnecté");
-        this.connectionStatusCircle.setFill(Color.RED);
+        if(this.myClt.isConnected()){
+            this.myClt.deconnecterDuServeur();
+            this.connectionStatus.setText("déconnecté");
+            this.connectionStatusCircle.setFill(Color.RED);
+        }
     }
 
     @FXML
     protected void onConnectionButtonClick() {
-        if (myClt.connecterAuServeur()) {
-            this.connectionStatus.setText("connecté");
-            this.connectionStatusCircle.setFill(Color.GREEN);
-            myClt.transmettreChaine("PING");
-        } else {
-            this.displayError("Impossible de se connecter au serveur");
+        if(this.myClt.isConnected()) {
+            this.displayError("Vous êtes déjà connecté.");
+        }else{
+            if (myClt.connecterAuServeur()) {
+                this.connectionStatus.setText("connecté");
+                this.connectionStatusCircle.setFill(Color.GREEN);
+            } else {
+                this.displayError("Impossible de se connecter au serveur");
+            }
         }
     }
 
@@ -66,9 +71,8 @@ public class ClientController implements Initializable, PropertyChangeListener {
 
     @FXML
     protected void onPlayButtonClick() {
-        // TODO implement
-        if (myClt.connecterAuServeur()){
-            myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY));
+        if (myClt.isConnected()){
+            myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 1");
         } else {
             this.displayError("Connectez-vous au serveur pour lancer la simulation.");
         }
