@@ -27,7 +27,7 @@ public class Experimentation implements IContext {
     private List<Measures> measuresList;
     private Measures lastUpdate;
     private ScheduledExecutorService scheduler;
-    private enum transmit {
+    private enum Command {
         END_OF_TRANSMISSION
     }
     private PropertyChangeSupport pcs;
@@ -80,25 +80,34 @@ public class Experimentation implements IContext {
             this.scheduler.scheduleAtFixedRate( () -> {
 
                 //loop on the measures list
-                while (this.indice < this.measuresList.size() && !this.scheduler.isShutdown()){
+                while (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
                     JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
                     os.println(jsonObject);
                     os.flush();
-                    this.indice++;
+                    this.incrementIndice();
                 }
             }, 0, delayS, TimeUnit.SECONDS);
 
         } catch (IOException e) {
             throw new IOException(e.getMessage());
         }
-        os.close(); //close the stream
+        //os.close(); //close the stream
         //reset the indice once the end of the simulation is reached
-        if (this.indice == this.measuresList.size() - 1){
+        if (this.getIndice() == this.measuresList.size() - 1){
+            this.scheduler.shutdown();
+            this.pcs.firePropertyChange("END_OF_TRANSMISSION", false, true);
             this.resetIndice();
             throw new EndOfSimulationException("INFO: End of simulation reached");
         }
     }
 
+    public synchronized int getIndice(){
+        return this.indice;
+    }
+
+    public synchronized void incrementIndice(){
+        this.indice++;
+    }
 
     /**
      * Pauses the simulation, keeps the indice at the same place.
@@ -154,7 +163,7 @@ public class Experimentation implements IContext {
     /**
      * Private method to reset the indice related to the list of measures.
      */
-    private void resetIndice(){
+    private synchronized void resetIndice(){
         this.indice = 0;
     }
 

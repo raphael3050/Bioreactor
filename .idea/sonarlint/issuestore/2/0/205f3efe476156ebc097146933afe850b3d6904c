@@ -1,9 +1,7 @@
 
-H
-java:S3985",Remove this unused private "transmit" class.(´Ä]8Ñ ¯­ß1
+M
+java:S3985"+Remove this unused private "Command" class.(Ûºƒ¯ùÿÿÿÿ8œ†˜Ìß1
 O
-java:S1135B"2Complete the task associated to this TODO comment.(¶Á8Ô ¯­ß1
-a
-java:S1854W"DRemove this useless assignment to local variable "numberOfMeasures".(ñşæ8Ô ¯­ß1
-R
-java:S1481W"5Remove this unused "numberOfMeasures" local variable.(ñşæ8Õ ¯­ß1
+java:S11352"2Complete the task associated to this TODO comment.(¶Á8…òºËß1
+\
+java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ8©†˜Ìß1

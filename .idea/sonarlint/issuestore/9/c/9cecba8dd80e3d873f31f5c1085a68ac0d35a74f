@@ -1,28 +1,34 @@
 
 k
-java:S1192>"NDefine a constant instead of duplicating this literal " val de etat " 4 times.(“£û8ıì§®ß1
-q
-java:S1192U"TDefine a constant instead of duplicating this literal "END_OF_TRANSMISSION" 3 times.(òõ­µ8ıì§®ß1
->
-java:S16433"Use a StringBuilder instead.(úë©–ıÿÿÿÿ8şì§®ß1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(íÇ¸ì8ší§®ß1
+java:S1192I"NDefine a constant instead of duplicating this literal " val de etat " 4 times.(“£û8¾±Ìß1
+9
+java:S1643>"Use a StringBuilder instead.(ÀôıŒ8¿±Ìß1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(íÇ¸ì8Á±Ìß1
 o
-java:S3776!"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(“–ış8æî§®ß1
+java:S3776)"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(“–ış8©³Ìß1
 W
-java:S1161!":Add the "@Override" annotation above this method signature(“–ış8çî§®ß1
+java:S1161)":Add the "@Override" annotation above this method signature(“–ış8ª³Ìß1
 I
-java:S1659""'Declare "outputReq" on a separate line.(ƒÚÔÿÿÿÿÿ8èî§®ß1
-G	java:S106+"+Replace this use of System.out by a logger.(Éãº8êî§®ß1
-G	java:S106."+Replace this use of System.out by a logger.(¿Õàè8ëî§®ß1
-G
-java:S1197/"*Move the array designators [] to the type.(Ò·É8ëî§®ß1
-L	java:S1064"+Replace this use of System.out by a logger.(ÆşÆ·ÿÿÿÿÿ8ìî§®ß1
+java:S1659*"'Declare "outputReq" on a separate line.(ƒÚÔÿÿÿÿÿ8«³Ìß1
+L	java:S106/"+Replace this use of System.out by a logger.(ü„ïşÿÿÿÿ8«³Ìß1
 T
-java:S11359"2Complete the task associated to this TODO comment.(Æ×’ÿÿÿÿÿ8ìî§®ß1
-G	java:S106>"+Replace this use of System.out by a logger.(“£û8ìî§®ß1
-G	java:S106C"+Replace this use of System.out by a logger.(“£û8íî§®ß1
-G	java:S106G"+Replace this use of System.out by a logger.(“£û8íî§®ß1
-G	java:S106K"+Replace this use of System.out by a logger.(“£û8îî§®ß1
-G	java:S106P"+Replace this use of System.out by a logger.(˜³•ş8îî§®ß1
+java:S1135."2Complete the task associated to this TODO comment.(Ñ°¶½øÿÿÿÿ8«³Ìß1
+G	java:S1065"+Replace this use of System.out by a logger.(Éãº8°³Ìß1
+T
+java:S11357"2Complete the task associated to this TODO comment.(’¨ù·úÿÿÿÿ8°³Ìß1
+G	java:S1069"+Replace this use of System.out by a logger.(ÕÏì“8±³Ìß1
+L	java:S106?"+Replace this use of System.out by a logger.(ÆşÆ·ÿÿÿÿÿ8²³Ìß1
+]	java:S125A"<This block of commented-out lines of code should be removed.(ã“œÿùÿÿÿÿ8³³Ìß1
+T
+java:S1135D"2Complete the task associated to this TODO comment.(Æ×’ÿÿÿÿÿ8³³Ìß1
+G	java:S106I"+Replace this use of System.out by a logger.(“£û8µ³Ìß1
+G	java:S106O"+Replace this use of System.out by a logger.(“£û8·³Ìß1
+G	java:S106T"+Replace this use of System.out by a logger.(“£û8¸³Ìß1
+G	java:S106Y"+Replace this use of System.out by a logger.(“£û8¹³Ìß1
+x
+java:S2159_"VRemove this call to "equals"; comparisons between unrelated types always return false.(Ã«á§ùÿÿÿÿ8º³Ìß1
+G	java:S106`"+Replace this use of System.out by a logger.(˜³•ş8º³Ìß1
 8
-java:S1116j"Remove this empty statement.(³øÍn8ïî§®ß1
+java:S1116{"Remove this empty statement.(³øÍn8½³Ìß1
+y
+java:S2159”"VRemove this call to "equals"; comparisons between unrelated types always return false.(èÅœ¹øÿÿÿÿ8»÷‘Ìß1

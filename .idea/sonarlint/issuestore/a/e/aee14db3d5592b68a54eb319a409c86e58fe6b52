@@ -1,31 +1,22 @@
 
-J
-java:S3740"/Provide the parametrized type for this generic.(çÖ şÿÿÿÿ
-k	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ
-q
-java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã
+Q
+java:S1066i"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8ÓùËß1
+r	java:S117@"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8‘ÓùËß1
 x
-java:S1104"]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ
-p
-java:S1104"UMake dataTable a static final constant or non-public and provide accessors if needed.(çÖ şÿÿÿÿ
+java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8’ÓùËß1
+
+java:S1104"]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ8“ÓùËß1
+r
+java:S1104"UMake dataTable a static final constant or non-public and provide accessors if needed.(®Ã­ø8“ÓùËß1
+~
+java:S1104"\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ8“ÓùËß1
+„
+java:S1104"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ8“ÓùËß1
+
+java:S1104"]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ8“ÓùËß1
+{
+java:S1104"^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ8“ÓùËß1
+x
+java:S1104"VMake playButton a static final constant or non-public and provide accessors if needed.(£Å±Øşÿÿÿÿ8“ÓùËß1
 w
-java:S1104"\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ
-}
-java:S1104"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ
-x
-java:S1104"]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ
-t
-java:S1104 "^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ
-P
-java:S1128"5Remove this unused import 'javafx.event.ActionEvent'.(î•¯¼ıÿÿÿÿ
-L
-java:S1128"6Remove this unused import 'javafx.event.EventHandler'.(º»û˜
-R
-java:S1128
-"7Remove this unused import 'javafx.scene.control.Label'.(ö²­ÿÿÿÿÿ
-X
-java:S1128"BRemove this unused import 'javafx.scene.layout.ColumnConstraints'.(Ñî²ı
-U
-java:S1128"?Remove this unused import 'javafx.scene.layout.RowConstraints'.(ìÕÔ©
-K
-java:S1128"5Remove this unused import 'javafx.scene.paint.Paint'.(Ïæ©¼
+java:S1104"[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8”ÓùËß1

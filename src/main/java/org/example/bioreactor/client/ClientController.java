@@ -72,7 +72,7 @@ public class ClientController implements Initializable, PropertyChangeListener {
     @FXML
     protected void onPlayButtonClick() {
         if (myClt.isConnected()){
-            myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 1");
+            myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 3");
         } else {
             this.displayError("Connectez-vous au serveur pour lancer la simulation.");
         }

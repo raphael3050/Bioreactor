@@ -19,15 +19,19 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
     private TCPServer myServer;
     int etat = 0;
     private boolean endOfTransmission = false;
+    private String [] chaines;
 
     public enum Command {
         PLAY,
+        END_OF_TRANSMISSION,
+        END_OF_SIMULATION
     }
 
     public ConnectedClientThread( Socket aClientSocket , TCPServer aServer ) {
-        clientSocket = aClientSocket;
-        myServer = aServer;
-        myServer.getIContext().getPropertyChangeSupport().addPropertyChangeListener(this);
+        this.clientSocket = aClientSocket;
+        this.myServer = aServer;
+        this.myServer.getIContext().getPropertyChangeSupport().addPropertyChangeListener(this);
+        this.chaines = null;
     }
 
     public int getEtat() {
@@ -39,6 +43,8 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
         BufferedReader is = null;
         PrintStream os = null;
+        //todo remove
+        System.out.println("reached here in clientThread?");
         try {
             /* Ouverture des objets de type Stream sur la socket du client réseau  */
             is = new BufferedReader ( new InputStreamReader(clientSocket.getInputStream()));
@@ -49,10 +55,10 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
             // TODO : Debug this section, it is not working as expected
             while ( (inputReq = is.readLine()) != null && etat != 3 ) {
                 System.out.println(" Message reçu : " + inputReq);
-                String chaines[] = inputReq.split(" ");
+                this.chaines = inputReq.split(" ");
                 outputReq = "Server Log :\n";
 
-                for (int i = 0; i < chaines.length; i++) {
+                for (int i = 0; i < this.chaines.length; i++) {
                     outputReq = outputReq + " - [Indice : " + i + "]\n - [Mot : " + chaines[i]+"]\n";
                     System.out.println(outputReq);
                 }
@@ -60,34 +66,40 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                 //os.flush();
 
                 //TODO ADJUST THE DATA
-                if (chaines[0].equals(Command.PLAY.toString())) {                //play
-                    etat = 1;
-                    int delayS = Integer.parseInt(chaines[1]);
-                    myServer.getIContext().play(clientSocket, delayS);
+                if (this.chaines[0].equals(Command.PLAY.toString())) {                //play
+                    this.etat = 1;
+                    int delayS = Integer.parseInt(this.chaines[1]);
+                    this.myServer.getIContext().play(clientSocket, delayS);
                     System.out.println(outputReq + " val de etat " + etat);
+                    this.resetChaines();
 
                 } else if (chaines[0].equals("pause")) {        //pause
                     etat = 2;
                     myServer.getIContext().pause();
                     System.out.println(outputReq + " val de etat " + etat);
+                    this.resetChaines();
                 } else if (chaines[0].equals("forward")) {      //forward
                     etat = 3;
                     myServer.getIContext().goForward();
                     System.out.println(outputReq + " val de etat " + etat);
+                    this.resetChaines();
                 } else if (chaines[0].equals("backwards")) {    //backwards
                     etat = 4;
                     myServer.getIContext().goBackwards();
                     System.out.println(outputReq + " val de etat " + etat);
+                    this.resetChaines();
                 } else if (chaines[0].equals("stop")) {         //stop
                     etat = 0;
                     myServer.getIContext().stop();
-                } else if (chaines[0].equals("END_OF_SIMULATION")){     //client leaves
+                    this.resetChaines();
+                } else if (chaines[0].equals(Command.END_OF_SIMULATION)){     //client leaves
                     System.out.println("End of the simulation with the client");
+                    this.resetChaines();
                     break;
                 }
 
                 if (endOfTransmission){
-                    os.println("END_OF_TRANSMISSION");
+                    os.println(Command.END_OF_TRANSMISSION);
                     endOfTransmission = false; //reset status
                 }
 
@@ -103,7 +115,7 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
         } catch (EndOfSimulationException e){
             String message = e.getMessage();
             os.println("INFO " + message);
-            os.println("END_OF_TRANSMISSION");
+            os.println(Command.END_OF_TRANSMISSION);
             os.close();
             try {
                 is.close();
@@ -133,9 +145,12 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt){
-        if (evt.getPropertyName().equals("END_OF_TRANSMISSION")){
+        if (evt.getPropertyName().equals(Command.END_OF_TRANSMISSION)){
             this.endOfTransmission = (Boolean)evt.getNewValue();
         }
+    }
 
+    public void resetChaines(){
+        this.chaines = null;
     }
 }

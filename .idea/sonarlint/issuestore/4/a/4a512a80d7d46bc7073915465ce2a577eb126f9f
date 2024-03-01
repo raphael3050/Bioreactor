@@ -1,15 +1,20 @@
 
+g	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ö†šÊß1
 u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ð±ðe8õ˜½­ß1
+g
+java:S2259b"JA "NullPointerException" could be thrown; "serverSocket" is nullable here.(§ˆïó8ý¢ŒÈß1
 T
 java:S1135"2Complete the task associated to this TODO comment.(Û†Ü“úÿÿÿÿ8ú˜½­ß1
-G	java:S1060"+Replace this use of System.out by a logger.(áº–¬8ý˜½­ß1
+
+java:S49701"bRemove or refactor this catch clause because it is unreachable, hidden by previous catch block(s).(ï­£Ä8Ž‡šÊß1
+G	java:S1060"+Replace this use of System.out by a logger.(áº–¬8Ë²ˆÉß1
 W
-java:S1161:":Add the "@Override" annotation above this method signature(Á»›ê8û˜½­ß1
+java:S1161<":Add the "@Override" annotation above this method signature(Á»›ê8œ»Éß1
 W
-java:S1161?":Add the "@Override" annotation above this method signature(“–ýþ8ü˜½­ß1
-G	java:S106G"+Replace this use of System.out by a logger.(³¤›8ý˜½­ß1
-G	java:S106O"+Replace this use of System.out by a logger.(ƒÄí–8ý˜½­ß1
-L	java:S106R"+Replace this use of System.out by a logger.(ãä¹®ûÿÿÿÿ8ý˜½­ß1
-L	java:S106U"+Replace this use of System.out by a logger.(Á®òºøÿÿÿÿ8þ˜½­ß1
-G	java:S106["+Replace this use of System.out by a logger.(¤ïìÃ8þ˜½­ß1
-G	java:S106b"+Replace this use of System.out by a logger.(Þ¤±ì8Ã¶¾­ß1
+java:S1161A":Add the "@Override" annotation above this method signature(“–ýþ8»Éß1
+G	java:S106I"+Replace this use of System.out by a logger.(³¤›8Ÿ»Éß1
+G	java:S106Q"+Replace this use of System.out by a logger.(ƒÄí–8 »Éß1
+L	java:S106T"+Replace this use of System.out by a logger.(ãä¹®ûÿÿÿÿ8¡»Éß1
+L	java:S106W"+Replace this use of System.out by a logger.(Á®òºøÿÿÿÿ8¡»Éß1
+G	java:S106]"+Replace this use of System.out by a logger.(¤ïìÃ8£»Éß1
+G	java:S106d"+Replace this use of System.out by a logger.(Þ¤±ì8¤»Éß1
