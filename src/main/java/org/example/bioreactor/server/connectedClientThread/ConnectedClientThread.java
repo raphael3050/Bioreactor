@@ -96,37 +96,6 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
             os.close();
             is.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (EndOfSimulationException e){
-            String message = e.getMessage();
-            os.println("INFO " + message);
-            os.println("END_OF_TRANSMISSION");
-            os.close();
-            try {
-                is.close();
-            } catch (IOException err){
-                err.printStackTrace();;
-            }
-
-        } catch (StartOfSimulationException e){
-            String message = e.getMessage();
-            os.println("INFO " + message);
-            os.close();
-            try {
-                is.close();
-            } catch (IOException err){
-                err.printStackTrace();
-            }
-        } catch (NumberFormatException e){
-            os.println("The delay you have sent should be an integer");
-            os.close();
-            try {
-                is.close();
-            } catch (IOException err){
-                err.printStackTrace();
-            }
-        }
         //EXCEPTIONS MANAGEMENT
         } catch (IOException e) {
             e.printStackTrace();
