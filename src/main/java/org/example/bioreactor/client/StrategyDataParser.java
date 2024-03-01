@@ -1,7 +1,8 @@
 package org.example.bioreactor.client;
 
-import org.json.simple.parser.ParseException;
-
+/**
+ * Interface for different data parsers
+ */
 public interface StrategyDataParser {
 
     Data parseData(String data);

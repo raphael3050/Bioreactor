@@ -5,10 +5,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 
+/**
+ * Class that stores the data received from the server
+ */
 public class DataStorage {
 
     /**
-     * The type of data that the storage can hold
+     * The type of language used to communicate with the server
      */
     public enum DataType {
         JSON, /* JSON data */

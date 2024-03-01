@@ -2,8 +2,10 @@ package org.example.bioreactor.client;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
+/**
+ * This class is responsible for parsing JSON data.
+ */
 public class JsonDataParser implements StrategyDataParser{
 
     private final JSONParser parser = new JSONParser();
@@ -12,6 +14,11 @@ public class JsonDataParser implements StrategyDataParser{
     private Double oxygen;
     private Double ph;
 
+    /**
+     * This method parses the data and returns a Data object.
+     * @param data: the data to be parsed.
+     * @return a Data object.
+     */
     @Override
     public Data parseData(String data){
         try {
