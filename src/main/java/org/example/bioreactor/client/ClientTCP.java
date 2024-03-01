@@ -30,7 +30,7 @@ public class ClientTCP  {
 
 	public enum Command {
 		PLAY,
-		END_OF_SIMULATION,
+		END_OF_TRANSMISSION,
 	}
 	
 	/** Un client se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
@@ -85,13 +85,16 @@ public class ClientTCP  {
 			socOut.println( uneChaine );
 			socOut.flush();
 			socOut.println(dataReceived);
-			while(!Objects.equals(socIn.readLine(), Command.END_OF_SIMULATION.toString()))
+			boolean endOfTransmission = false;
+			while(!endOfTransmission)
 			{
 				dataReceived = socIn.readLine();
 				System.out.println( "[Réponse serveur] : " + dataReceived );
-				dataStorage.addData(dataReceived);
+				if(dataReceived.equals(Command.END_OF_TRANSMISSION.toString()))
+					endOfTransmission = true;
+				else
+					dataStorage.addData(dataReceived);
 			}
-
 
 		} catch (UnknownHostException e) {
 			System.err.println("Serveur inconnu : " + e);

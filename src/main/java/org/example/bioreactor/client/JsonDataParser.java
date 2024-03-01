@@ -1,14 +1,16 @@
 package org.example.bioreactor.client;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 /**
  * This class is responsible for parsing JSON data.
  */
 public class JsonDataParser implements StrategyDataParser{
 
-    private final JSONParser parser = new JSONParser();
     private String date;
     private Double temperature;
     private Double oxygen;
@@ -22,13 +24,23 @@ public class JsonDataParser implements StrategyDataParser{
     @Override
     public Data parseData(String data){
         try {
-            JSONObject jsonObject = (JSONObject) parser.parse(data);
-            date = (String) jsonObject.get("date");
-            temperature = Double.parseDouble((String) jsonObject.get("temperature"));
-            oxygen = Double.parseDouble((String) jsonObject.get("oxygen"));
-            ph = Double.parseDouble((String) jsonObject.get("ph"));
-        } catch (ClassCastException | NumberFormatException | org.json.simple.parser.ParseException e) {
+            // Créer un objet ObjectMapper
+            ObjectMapper mapper = new ObjectMapper();
+
+            // Lire la chaîne JSON dans un arbre JsonNode
+            JsonNode rootNode = mapper.readTree(data);
+
+            // Extraire les valeurs
+            date = rootNode.get("date").asText();
+            temperature = rootNode.get("temperature").asDouble();
+            ph = rootNode.get("ph").asDouble();
+            //comment = rootNode.get("comment").asText();
+            oxygen = rootNode.get("oxygen").asDouble();
+
+        } catch (ClassCastException | NumberFormatException e) {
             System.err.println(e.getLocalizedMessage());
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
         }
         return new Data(date, temperature, oxygen, ph);
     }

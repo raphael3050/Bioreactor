@@ -86,16 +86,13 @@ public class Experimentation implements IContext {
                     os.flush();
                     this.indice++;
                 }
+                this.resetIndice();
+                this.scheduler.shutdown();
+                os.println(transmit.END_OF_TRANSMISSION);
             }, 0, delayS, TimeUnit.SECONDS);
 
         } catch (IOException e) {
             throw new IOException(e.getMessage());
-        }
-        os.close(); //close the stream
-        //reset the indice once the end of the simulation is reached
-        if (this.indice == this.measuresList.size() - 1){
-            this.resetIndice();
-            throw new EndOfSimulationException("INFO: End of simulation reached");
         }
     }
 

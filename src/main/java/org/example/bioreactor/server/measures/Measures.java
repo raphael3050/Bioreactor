@@ -9,20 +9,20 @@ import java.util.List;
 
 public class Measures {
 
-    private LocalDateTime localDateTime;
+    private String localDateTime;
     private List<ISensor> ISensors;
     private String comment;
 
     public Measures(){
         this.ISensors = new ArrayList<>();
     }
-    public Measures(LocalDateTime localDateTime, List<ISensor> ISensors, String comment){
+    public Measures(String localDateTime, List<ISensor> ISensors, String comment){
         this.localDateTime = localDateTime;
         this.ISensors = ISensors;
         this.comment = comment;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public String getLocalDateTime() {
         return localDateTime;
     }
 
@@ -42,7 +42,7 @@ public class Measures {
         this.comment = comment;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
+    public void setLocalDateTime(String localDateTime) {
         this.localDateTime = localDateTime;
     }
 }

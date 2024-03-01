@@ -10,6 +10,7 @@ module org.example.bioreactor {
     requires org.apache.poi.ooxml;
     requires json.simple;
     requires java.desktop;
+    requires com.fasterxml.jackson.databind;
 
     exports org.example.bioreactor.client;
     opens org.example.bioreactor.client to javafx.fxml;

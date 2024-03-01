@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Arrays;
 
 
 public class ConnectedClientThread extends Thread implements PropertyChangeListener {
@@ -48,14 +49,9 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
             // TODO : Debug this section, it is not working as expected
             while ( (inputReq = is.readLine()) != null && etat != 3 ) {
-                System.out.println(" Message reçu : " + inputReq);
-                String chaines[] = inputReq.split(" ");
-                outputReq = "Server Log :\n";
+                String[] chaines = inputReq.split(" ");
+                System.out.println("Message reçu : "+Arrays.toString(chaines));
 
-                for (int i = 0; i < chaines.length; i++) {
-                    outputReq = outputReq + " - [Indice : " + i + "]\n - [Mot : " + chaines[i]+"]\n";
-                    System.out.println(outputReq);
-                }
                 //os.println(outputReq + "\n");
                 //os.flush();
 
@@ -64,20 +60,16 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                     etat = 1;
                     int delayS = Integer.parseInt(chaines[1]);
                     myServer.getIContext().play(clientSocket, delayS);
-                    System.out.println(outputReq + " val de etat " + etat);
 
                 } else if (chaines[0].equals("pause")) {        //pause
                     etat = 2;
                     myServer.getIContext().pause();
-                    System.out.println(outputReq + " val de etat " + etat);
                 } else if (chaines[0].equals("forward")) {      //forward
                     etat = 3;
                     myServer.getIContext().goForward();
-                    System.out.println(outputReq + " val de etat " + etat);
                 } else if (chaines[0].equals("backwards")) {    //backwards
                     etat = 4;
                     myServer.getIContext().goBackwards();
-                    System.out.println(outputReq + " val de etat " + etat);
                 } else if (chaines[0].equals("stop")) {         //stop
                     etat = 0;
                     myServer.getIContext().stop();

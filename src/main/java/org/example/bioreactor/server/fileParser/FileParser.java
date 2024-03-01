@@ -99,7 +99,7 @@ public class FileParser {
                         }
                     }
                 }
-                this.createMeasure(localDateTime, temperature, oxygen, pH, comment);
+                this.createMeasure(localDateTime.toString(), temperature, oxygen, pH, comment);
                 i++;
             }
 
@@ -139,7 +139,7 @@ public class FileParser {
      * @param pH : a PH object
      * @param comment : a String, eventually null.
      */
-    private void createMeasure(LocalDateTime localDateTime, Temperature temperature, Oxygen oxygen, PH pH, String comment){
+    private void createMeasure(String localDateTime, Temperature temperature, Oxygen oxygen, PH pH, String comment){
         Measures aMeasure = new Measures();
         aMeasure.setLocalDateTime(localDateTime);
         if (comment != null){

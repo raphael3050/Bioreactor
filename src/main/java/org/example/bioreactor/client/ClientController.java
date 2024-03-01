@@ -2,9 +2,11 @@ package org.example.bioreactor.client;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
@@ -22,6 +24,11 @@ public class ClientController implements Initializable, PropertyChangeListener {
     public Button connexionButton;
     public Button deconnexionButton;
     public TableView<Data> dataTable;
+    public TableColumn<Data, String> dateColumn;
+    public TableColumn<Data, String> temperatureColumn;
+    public TableColumn<Data, String> oxygeneColumn;
+    public TableColumn<Data, String> phColumn;
+
     public Text connectionStatus;
     public Circle connectionStatusCircle;
     public HBox messageLoggerHbox;
@@ -97,6 +104,13 @@ public class ClientController implements Initializable, PropertyChangeListener {
         this.connectionErrorMsg.setVisible(false);
         this.connectionErrorMsg.setDisable(true);
         this.errorMsgContent.setText("");
+
+        // Tableau
+        // Configurer les CellValueFactory pour chaque colonne
+        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate()));
+        temperatureColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTemperature().toString()));
+        oxygeneColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getOxygen().toString()));
+        phColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPh().toString()));
     }
 
     @Override
@@ -105,6 +119,7 @@ public class ClientController implements Initializable, PropertyChangeListener {
             if (evt.getPropertyName().equals("new_data")) {
                 Data data = (Data) evt.getNewValue();
                 this.addDataToTable(data);
+                this.dataTable.refresh();
             }
         }
     }
