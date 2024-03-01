@@ -27,7 +27,7 @@ public class Experimentation implements IContext {
     private List<Measures> measuresList;
     private Measures lastUpdate;
     private ScheduledExecutorService scheduler;
-    private enum transmit {
+    private enum Command {
         END_OF_TRANSMISSION
     }
     private PropertyChangeSupport pcs;
@@ -80,15 +80,15 @@ public class Experimentation implements IContext {
             this.scheduler.scheduleAtFixedRate( () -> {
 
                 //loop on the measures list
-                while (this.indice < this.measuresList.size() && !this.scheduler.isShutdown()){
+                while (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
                     JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
                     os.println(jsonObject);
                     os.flush();
-                    this.indice++;
+                    this.incrementIndice();
                 }
                 this.resetIndice();
                 this.scheduler.shutdown();
-                os.println(transmit.END_OF_TRANSMISSION);
+                os.println(Command.END_OF_TRANSMISSION);
             }, 0, delayS, TimeUnit.SECONDS);
 
         } catch (IOException e) {
@@ -105,6 +105,13 @@ public class Experimentation implements IContext {
         this.scheduler.shutdown();
     }
 
+    public synchronized int getIndice(){
+        return this.indice;
+    }
+
+    public synchronized void incrementIndice(){
+        this.indice++;
+    }
 
     /**
      * Interrupts the simulation. Resets the indice of lecture.
@@ -151,7 +158,7 @@ public class Experimentation implements IContext {
     /**
      * Private method to reset the indice related to the list of measures.
      */
-    private void resetIndice(){
+    private synchronized void resetIndice(){
         this.indice = 0;
     }
 
