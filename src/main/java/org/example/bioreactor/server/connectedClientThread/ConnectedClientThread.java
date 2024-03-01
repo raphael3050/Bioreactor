@@ -95,7 +95,6 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
             clientSocket.close();
             os.close();
             is.close();
-            // TODO : Change the printStrackTrace to System.err.println(e.getLocalizedMessage()
 
         } catch (IOException e) {
             e.printStackTrace();
