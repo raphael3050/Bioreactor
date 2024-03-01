@@ -1,12 +1,10 @@
 
-g	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ö†šÊß1
+g	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8·›ðÎß1
 u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ð±ðe8õ˜½­ß1
 g
 java:S2259b"JA "NullPointerException" could be thrown; "serverSocket" is nullable here.(§ˆïó8ý¢ŒÈß1
 T
 java:S1135"2Complete the task associated to this TODO comment.(Û†Ü“úÿÿÿÿ8ú˜½­ß1
-
-java:S49701"bRemove or refactor this catch clause because it is unreachable, hidden by previous catch block(s).(ï­£Ä8Ž‡šÊß1
 G	java:S1060"+Replace this use of System.out by a logger.(áº–¬8Ë²ˆÉß1
 W
 java:S1161<":Add the "@Override" annotation above this method signature(Á»›ê8œ»Éß1

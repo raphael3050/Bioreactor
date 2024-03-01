@@ -80,15 +80,17 @@ public class Experimentation implements IContext {
             this.scheduler.scheduleAtFixedRate( () -> {
 
                 //loop on the measures list
-                while (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
+                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
                     JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
                     os.println(jsonObject);
                     os.flush();
                     this.incrementIndice();
                 }
-                this.resetIndice();
-                this.scheduler.shutdown();
-                os.println(Command.END_OF_TRANSMISSION);
+                if (this.getIndice() == this.measuresList.size() - 1){
+                    this.resetIndice();
+                    os.println(Command.END_OF_TRANSMISSION);
+                    this.scheduler.shutdown();
+                }
             }, 0, delayS, TimeUnit.SECONDS);
 
         } catch (IOException e) {
