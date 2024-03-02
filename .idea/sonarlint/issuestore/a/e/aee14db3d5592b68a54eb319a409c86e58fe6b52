@@ -1,30 +1,36 @@
 
-Q
-java:S1066w"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8›œğÎß1
-r	java:S117G"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8œœğÎß1
+R
+java:S1066"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8›Ò½ùß1
+r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8œÒ½ùß1
 x
-java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8œœğÎß1
+java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8œÒ½ùß1
 
-java:S1104"]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ8œœğÎß1
+java:S1104 "]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ8œÒ½ùß1
 r
-java:S1104"UMake dataTable a static final constant or non-public and provide accessors if needed.(®Ã­ø8œœğÎß1
+java:S1104""UMake dataTable a static final constant or non-public and provide accessors if needed.(®Ã­ø8œÒ½ùß1
 x
-java:S1104"VMake dateColumn a static final constant or non-public and provide accessors if needed.(çáû­ıÿÿÿÿ8œœğÎß1
+java:S1104#"VMake dateColumn a static final constant or non-public and provide accessors if needed.(çáû­ıÿÿÿÿ8œÒ½ùß1
 
-java:S1104"]Make temperatureColumn a static final constant or non-public and provide accessors if needed.(³¯çäşÿÿÿÿ8œœğÎß1
+java:S1104$"]Make temperatureColumn a static final constant or non-public and provide accessors if needed.(³¯çäşÿÿÿÿ8œÒ½ùß1
 {
-java:S1104"YMake oxygeneColumn a static final constant or non-public and provide accessors if needed.(À‚¡¥ùÿÿÿÿ8œğÎß1
+java:S1104%"YMake oxygeneColumn a static final constant or non-public and provide accessors if needed.(À‚¡¥ùÿÿÿÿ8œÒ½ùß1
 q
-java:S1104"TMake phColumn a static final constant or non-public and provide accessors if needed.(‘¬Ûœ8œğÎß1
+java:S1104&"TMake phColumn a static final constant or non-public and provide accessors if needed.(‘¬Ûœ8œÒ½ùß1
 ~
-java:S1104 "\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ8œğÎß1
+java:S1104("\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ8œÒ½ùß1
 „
-java:S1104!"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ8œğÎß1
+java:S1104)"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ8œÒ½ùß1
 
-java:S1104""]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ8œğÎß1
+java:S1104*"]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ8œÒ½ùß1
 {
-java:S1104#"^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ8œğÎß1
+java:S1104+"^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ8Ò½ùß1
 x
-java:S1104$"VMake playButton a static final constant or non-public and provide accessors if needed.(£Å±Øşÿÿÿÿ8œğÎß1
+java:S1104,"VMake playButton a static final constant or non-public and provide accessors if needed.(£Å±Øşÿÿÿÿ8Ò½ùß1
+t
+java:S1104-"WMake pauseButton a static final constant or non-public and provide accessors if needed.(‰ÍŒ8Ò½ùß1
 w
-java:S1104%"[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8œğÎß1
+java:S1104."[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8Ò½ùß1
+I
+java:S1602[",Remove useless curly braces around statement(¥—ığ8ÅÒ½ùß1
+I
+java:S1602f",Remove useless curly braces around statement(¥—ığ8ÆÒ½ùß1

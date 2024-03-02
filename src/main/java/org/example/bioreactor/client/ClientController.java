@@ -42,6 +42,7 @@ public class ClientController implements Initializable, PropertyChangeListener {
     public HBox messageLoggerHbox;
     public TextFlow connectionErrorMsg;
     public Button playButton;
+    public Button pauseButton;
     public Text errorMsgContent;
     private ClientTCP myClt;
 
@@ -89,6 +90,17 @@ public class ClientController implements Initializable, PropertyChangeListener {
         if (myClt.isConnected()){
             new Thread(() -> {
                 myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 3");
+            }).start();
+        } else {
+            this.displayError("Connectez-vous au serveur pour lancer la simulation.");
+        }
+    }
+
+    @FXML
+    protected void onPauseButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PAUSE));
             }).start();
         } else {
             this.displayError("Connectez-vous au serveur pour lancer la simulation.");

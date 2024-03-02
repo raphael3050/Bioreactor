@@ -24,6 +24,10 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
     public enum Command {
         PLAY,
+        PAUSE,
+        FORWARD,
+        BACKWARD,
+        STOP,
         END_OF_TRANSMISSION,
         END_OF_SIMULATION
     }
@@ -65,21 +69,21 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                     this.myServer.getIContext().play(clientSocket, delayS);
                     this.resetChaines();
 
-                } else if (chaines[0].equals("pause")) {        //pause
+                } else if (chaines[0].equals(Command.PAUSE.toString())) {        //pause
                     etat = 2;
-                    myServer.getIContext().pause();
+                    myServer.getIContext().pause(clientSocket);
                     this.resetChaines();
-                } else if (chaines[0].equals("forward")) {      //forward
+                } else if (chaines[0].equals(Command.FORWARD.toString())) {      //forward
                     etat = 3;
                     myServer.getIContext().goForward();
                     this.resetChaines();
-                } else if (chaines[0].equals("backwards")) {    //backwards
+                } else if (chaines[0].equals(Command.BACKWARD.toString())) {    //backwards
                     etat = 4;
                     myServer.getIContext().goBackwards();
                     this.resetChaines();
-                } else if (chaines[0].equals("stop")) {         //stop
+                } else if (chaines[0].equals(Command.STOP.toString())) {         //stop
                     etat = 0;
-                    myServer.getIContext().stop();
+                    myServer.getIContext().stop(clientSocket);
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.END_OF_SIMULATION)){     //client leaves
                     System.out.println("End of the simulation with the client");

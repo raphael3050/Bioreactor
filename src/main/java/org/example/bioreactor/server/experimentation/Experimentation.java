@@ -2,6 +2,7 @@ package org.example.bioreactor.server.experimentation;
 
 import org.example.bioreactor.server.IContext;
 import org.example.bioreactor.server.ISensor;
+import org.example.bioreactor.server.connectedClientThread.ConnectedClientThread;
 import org.example.bioreactor.server.fileParser.FileParser;
 import org.example.bioreactor.server.measures.Measures;
 import org.example.bioreactor.server.sensor.Oxygen;
@@ -31,9 +32,6 @@ public class Experimentation implements IContext {
     private PropertyChangeSupport pcs;
     private int indice; //indice related to which file is being read.
     private static final Logger LOGGER =  LogManager.getLogger( Experimentation.class );
-    private enum Command {
-        END_OF_TRANSMISSION
-    }
     private boolean lastTransmission;
 
     public Experimentation(String filename) throws IOException {
@@ -116,13 +114,6 @@ public class Experimentation implements IContext {
                 this.scheduler = Executors.newSingleThreadScheduledExecutor();
             }
 
-            if (this.lastTransmission){
-                writer.println(Command.END_OF_TRANSMISSION);
-                writer.flush();
-                this.lastTransmission = false;
-                this.scheduler.shutdown();
-            }
-
             // Envoyer les données JSON à intervalles réguliers jusqu'à la fin de la simulation
             this.scheduler.scheduleAtFixedRate(() -> {
                 // Parcourir la liste des mesures
@@ -135,9 +126,9 @@ public class Experimentation implements IContext {
                     this.incrementIndice();
                 }
                 if (this.getIndice() == this.measuresList.size() - 1) {
-                    LOGGER.info("End of the simulation, sending the end of transmission command : "+ Command.END_OF_TRANSMISSION);
+                    LOGGER.info("End of the simulation, sending the end of transmission command : "+ ConnectedClientThread.Command.END_OF_TRANSMISSION);
                     this.resetIndice();
-                    writer.print(Command.END_OF_TRANSMISSION+"\n");
+                    writer.print(ConnectedClientThread.Command.END_OF_TRANSMISSION+"\n");
                     writer.flush();
                     this.scheduler.shutdown();
                 }
@@ -153,10 +144,21 @@ public class Experimentation implements IContext {
      * Pauses the simulation, keeps the indice at the same place.
      */
     @Override
-    public void pause(){
+    public void pause(Socket clientSocket){
+        this.scheduler.shutdown();
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
+        this.scheduler.schedule(() -> {
+            try{
+                PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+                writer.println(ConnectedClientThread.Command.END_OF_TRANSMISSION);
+                this.scheduler.shutdown();
+            } catch (IOException e){
+                //todo raise specific error?
+                e.printStackTrace();
+            }
+        }, 0, TimeUnit.SECONDS);
         this.lastTransmission = true;
         //todo remove?
-        //this.scheduler.shutdown();
     }
 
     public synchronized int getIndice(){
@@ -171,8 +173,8 @@ public class Experimentation implements IContext {
      * Interrupts the simulation. Resets the indice of lecture.
      */
     @Override
-    public void stop(){
-        this.scheduler.shutdown();
+    public void stop(Socket clientSocket){
+        this.pause(clientSocket);
         this.resetIndice();
         //TODO RECONSIDER : useless
         this.pcs.firePropertyChange("END_OF_TRANSMISSION", false, true);

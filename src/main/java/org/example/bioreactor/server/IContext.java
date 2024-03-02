@@ -11,8 +11,8 @@ import java.net.Socket;
 public interface IContext {
 
     void play(Socket clientSocket, int delayMS) throws EndOfSimulationException, IOException;
-    void pause();
-    void stop();
+    void pause(Socket clientSocket);
+    void stop(Socket clientSocket);
     Measures goForward() throws EndOfSimulationException;
     Measures goBackwards() throws StartOfSimulationException;
     PropertyChangeSupport getPropertyChangeSupport();

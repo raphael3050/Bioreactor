@@ -30,6 +30,7 @@ public class ClientTCP  {
 
 	public enum Command {
 		PLAY,
+		PAUSE,
 		END_OF_TRANSMISSION,
 	}
 	
