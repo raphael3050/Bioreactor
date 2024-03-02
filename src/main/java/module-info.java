@@ -11,6 +11,7 @@ module org.example.bioreactor {
     requires json.simple;
     requires java.desktop;
     requires com.fasterxml.jackson.databind;
+    requires org.apache.logging.log4j;
 
     exports org.example.bioreactor.client;
     opens org.example.bioreactor.client to javafx.fxml;
