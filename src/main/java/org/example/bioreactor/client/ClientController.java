@@ -43,6 +43,8 @@ public class ClientController implements Initializable, PropertyChangeListener {
     public TextFlow connectionErrorMsg;
     public Button playButton;
     public Button pauseButton;
+    public Button previousButton;
+    public Button nextButton;
     public Text errorMsgContent;
     private ClientTCP myClt;
     private int delayMS;
@@ -115,6 +117,28 @@ public class ClientController implements Initializable, PropertyChangeListener {
         if (myClt.isConnected()){
             new Thread(() -> {
                 myClt.transmettreChaine(String.valueOf(ClientTCP.Command.STOP));
+            }).start();
+        } else {
+            this.displayError("Vous n'êtes pas connecté.");
+        }
+    }
+
+    @FXML
+    protected void onPreviousButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PREVIOUS));
+            }).start();
+        } else {
+            this.displayError("Vous n'êtes pas connecté.");
+        }
+    }
+
+    @FXML
+    protected void onNextButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.NEXT));
             }).start();
         } else {
             this.displayError("Vous n'êtes pas connecté.");

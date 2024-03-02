@@ -181,12 +181,21 @@ public class Experimentation implements IContext {
      * @throws EndOfSimulationException: a message to specify that the user reached the end of the simulation
      */
     @Override
-    public Measures goForward() throws EndOfSimulationException {
+    public String goForward(Socket clientSocket) throws EndOfSimulationException {
         if (this.indice == this.measuresList.size() - 1){
             throw new EndOfSimulationException("INFO: The simulation reached its last values");
         }
         this.indice++;
-        return this.measuresList.get(this.indice);
+        JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+        try {
+            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
+            writer.println(jsonObject.toString());
+            writer.println(ConnectedClientThread.Command.END_OF_TRANSMISSION);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return jsonObject.toString();
     }
 
 
@@ -197,12 +206,13 @@ public class Experimentation implements IContext {
      * @throws StartOfSimulationException: a specific message explaining that the beginning of the list was reached
      */
     @Override
-    public Measures goBackwards() throws StartOfSimulationException {
+    public String goBackwards() throws StartOfSimulationException {
         if (this.indice == 0) {
             throw new StartOfSimulationException("INFO: The simulation reached its first measure");
         }
         this.indice--;
-        return this.measuresList.get(this.indice);
+        JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+        return jsonObject.toString();
     }
 
 

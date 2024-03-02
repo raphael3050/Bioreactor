@@ -28,13 +28,14 @@ public class ClientTCP  {
 
 	private DataStorage dataStorage;
 	private String previousCommand;
+	private boolean inPlay;
 
 	public enum Command {
 		PLAY,
 		PAUSE,
 		STOP,
-		FORWARD,
-		BACKWARD,
+		PREVIOUS,
+		NEXT,
 		END_OF_TRANSMISSION,
 		END_OF_SIMULATION,
 	}
@@ -44,6 +45,8 @@ public class ClientTCP  {
 		numeroPort = unNumero;
 		nomServeur = unNomServeur;
 		dataStorage = new DataStorage(communicationType);
+		previousCommand = null;
+		inPlay = false;
 	}
 
 
@@ -86,14 +89,22 @@ public class ClientTCP  {
 	
 	public String transmettreChaine(String uneChaine) {
 		String dataReceived = null;
+		// make sure the play button cannot be ran more than one time in a row.
 		if (this.previousCommand != null && this.previousCommand.equals(Command.PLAY.toString()) && uneChaine.equals(Command.PLAY.toString())){
 			return null;
 		}
-		if (this.previousCommand != null && this.previousCommand.equals(Command.PAUSE.toString()) && uneChaine.equals(Command.PAUSE.toString())){
+		// make the pause button because a play button to resume a simulation without having to move
+		if (this.previousCommand != null && this.previousCommand.equals(Command.PAUSE.toString()) && uneChaine.equals(Command.PAUSE.toString()) && this.inPlay){
 			//TODO USE A GLOBAL VARIABLE TO REACH THE DELAY IN MS?
 			uneChaine = String.valueOf(Command.PLAY) + " 5"; //clicking twice on pause resumes the simulation
 		}
 		this.previousCommand = uneChaine;
+		// procedure to control the previous step
+		if (uneChaine.equals(Command.PLAY)){
+			this.inPlay = true;
+		} else if (uneChaine.equals(Command.STOP)){
+			this.inPlay = false;
+		}
 
 		try {
 			System.out.println( "[Requete client] : " + uneChaine );

@@ -25,8 +25,8 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
     public enum Command {
         PLAY,
         PAUSE,
-        FORWARD,
-        BACKWARD,
+        PREVIOUS,
+        NEXT,
         STOP,
         END_OF_TRANSMISSION,
         END_OF_SIMULATION,
@@ -53,6 +53,7 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
             /* Ouverture des objets de type Stream sur la socket du client réseau  */
             is = new BufferedReader ( new InputStreamReader(clientSocket.getInputStream()));
             os = new PrintStream(clientSocket.getOutputStream());
+            String data = null;
 
             System.out.println( "Client Thread " );
 
@@ -80,13 +81,15 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                     this.etat = 2;
                     this.myServer.getIContext().pause(clientSocket);
                     this.resetChaines();
-                } else if (chaines[0].equals(Command.FORWARD.toString())) {      //forward
+                } else if (chaines[0].equals(Command.NEXT.toString())) {      //forward
                     this.etat = 3;
-                    this.myServer.getIContext().goForward();
+                    data = this.myServer.getIContext().goForward(clientSocket);
                     this.resetChaines();
-                } else if (chaines[0].equals(Command.BACKWARD.toString())) {    //backwards
+                } else if (chaines[0].equals(Command.PREVIOUS.toString())) {    //backwards
                     this.etat = 4;
-                    this.myServer.getIContext().goBackwards();
+                    data = this.myServer.getIContext().goBackwards();
+                    os.println(data);
+                    os.println(Command.END_OF_TRANSMISSION);
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.STOP.toString())) {         //stop
                     if (this.etat == 5){ //stopping is allowed only once per playing process
