@@ -27,6 +27,7 @@ public class ClientTCP  {
 	private boolean isConnected = false;
 
 	private DataStorage dataStorage;
+	private String previousCommand;
 
 	public enum Command {
 		PLAY,
@@ -85,6 +86,15 @@ public class ClientTCP  {
 	
 	public String transmettreChaine(String uneChaine) {
 		String dataReceived = null;
+		if (this.previousCommand != null && this.previousCommand.equals(Command.PLAY.toString()) && uneChaine.equals(Command.PLAY.toString())){
+			return null;
+		}
+		if (this.previousCommand != null && this.previousCommand.equals(Command.PAUSE.toString()) && uneChaine.equals(Command.PAUSE.toString())){
+			//TODO USE A GLOBAL VARIABLE TO REACH THE DELAY IN MS?
+			uneChaine = String.valueOf(Command.PLAY) + " 5"; //clicking twice on pause resumes the simulation
+		}
+		this.previousCommand = uneChaine;
+
 		try {
 			System.out.println( "[Requete client] : " + uneChaine );
 			socOut.println( uneChaine );

@@ -45,6 +45,7 @@ public class ClientController implements Initializable, PropertyChangeListener {
     public Button pauseButton;
     public Text errorMsgContent;
     private ClientTCP myClt;
+    private int delayMS;
 
     @FXML
     protected void onDeconnectionButtonClick() {
@@ -89,6 +90,8 @@ public class ClientController implements Initializable, PropertyChangeListener {
     protected void onPlayButtonClick() {
         if (myClt.isConnected()){
             new Thread(() -> {
+                //todo give the choice to the user to change the delay between the receipt of two measures
+                //use this.delayMS
                 myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 5"); //delay in ms
             }).start();
         } else {
@@ -122,8 +125,6 @@ public class ClientController implements Initializable, PropertyChangeListener {
     protected void addDataToTable(Data data) {
         this.dataTable.getItems().add(data);
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

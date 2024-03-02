@@ -1,53 +1,57 @@
 
 R
-java:S1066š"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8›Ò½ùß1
-r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8±§úß1
+java:S1066›"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8¥™—„à1
+r	java:S117Q"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8¦™—„à1
 x
-java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8œÒ½ùß1
+java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8¦™—„à1
 
-java:S1104 "]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ8œÒ½ùß1
+java:S1104 "]Make deconnexionButton a static final constant or non-public and provide accessors if needed.(Ô˜›†ùÿÿÿÿ8¦™—„à1
 r
-java:S1104""UMake dataTable a static final constant or non-public and provide accessors if needed.(®Ã­ø8œÒ½ùß1
+java:S1104""UMake dataTable a static final constant or non-public and provide accessors if needed.(®Ã­ø8¦™—„à1
 x
-java:S1104#"VMake dateColumn a static final constant or non-public and provide accessors if needed.(çáû­ıÿÿÿÿ8œÒ½ùß1
+java:S1104#"VMake dateColumn a static final constant or non-public and provide accessors if needed.(çáû­ıÿÿÿÿ8¦™—„à1
 
-java:S1104$"]Make temperatureColumn a static final constant or non-public and provide accessors if needed.(³¯çäşÿÿÿÿ8œÒ½ùß1
+java:S1104$"]Make temperatureColumn a static final constant or non-public and provide accessors if needed.(³¯çäşÿÿÿÿ8¦™—„à1
 {
-java:S1104%"YMake oxygeneColumn a static final constant or non-public and provide accessors if needed.(À‚¡¥ùÿÿÿÿ8œÒ½ùß1
+java:S1104%"YMake oxygeneColumn a static final constant or non-public and provide accessors if needed.(À‚¡¥ùÿÿÿÿ8¦™—„à1
 q
-java:S1104&"TMake phColumn a static final constant or non-public and provide accessors if needed.(‘¬Ûœ8œÒ½ùß1
+java:S1104&"TMake phColumn a static final constant or non-public and provide accessors if needed.(‘¬Ûœ8¦™—„à1
 ~
-java:S1104("\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ8œÒ½ùß1
+java:S1104("\Make connectionStatus a static final constant or non-public and provide accessors if needed.(š§±ûÿÿÿÿ8¦™—„à1
 „
-java:S1104)"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ8œÒ½ùß1
+java:S1104)"bMake connectionStatusCircle a static final constant or non-public and provide accessors if needed.(°ÙÜøÿÿÿÿ8¦™—„à1
 
-java:S1104*"]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ8œÒ½ùß1
+java:S1104*"]Make messageLoggerHbox a static final constant or non-public and provide accessors if needed.(ü×³°ıÿÿÿÿ8¦™—„à1
 {
-java:S1104+"^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ8Ò½ùß1
+java:S1104+"^Make connectionErrorMsg a static final constant or non-public and provide accessors if needed.(ƒÄàÏ8¦™—„à1
 x
-java:S1104,"VMake playButton a static final constant or non-public and provide accessors if needed.(£Å±Øşÿÿÿÿ8Ò½ùß1
+java:S1104,"VMake playButton a static final constant or non-public and provide accessors if needed.(£Å±Øşÿÿÿÿ8¦™—„à1
 t
-java:S1104-"WMake pauseButton a static final constant or non-public and provide accessors if needed.(‰ÍŒ8²§úß1
+java:S1104-"WMake pauseButton a static final constant or non-public and provide accessors if needed.(‰ÍŒ8¦™—„à1
 w
-java:S1104."[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8²§úß1
+java:S1104."[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8¦™—„à1
 I
-java:S1602[",Remove useless curly braces around statement(¥—ığ8Ï§úß1
+java:S1602\",Remove useless curly braces around statement(¥—ığ8Â™—„à1
+N
+java:S1135]"2Complete the task associated to this TODO comment.(é‹–8ÎØ™„à1
 I
-java:S1602f",Remove useless curly braces around statement(¥—ığ8Ğ§úß1
+java:S1602i",Remove useless curly braces around statement(¥—ığ8Ã™—„à1
 I
-java:S1602q",Remove useless curly braces around statement(¥—ığ8Ò§úß1
+java:S1602t",Remove useless curly braces around statement(¥—ığ8Ä™—„à1
 Z
-java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8ßÉ•úß1
+java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8Ê™—„à1
 ]
-java:S1128";Remove this unused import 'javafx.beans.property.Property'.(ìÜ²öøÿÿÿÿ8ßÉ•úß1
+java:S1128";Remove this unused import 'javafx.beans.property.Property'.(ìÜ²öøÿÿÿÿ8Ê™—„à1
 i
-java:S1128"GRemove this unused import 'javafx.beans.property.SimpleDoubleProperty'.(Ğ†Üıúÿÿÿÿ8ßÉ•úß1
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleDoubleProperty'.(Ğ†Üıúÿÿÿÿ8Ê™—„à1
 d
-java:S1128"GRemove this unused import 'javafx.beans.property.SimpleObjectProperty'.(¶Ö­¤8àÉ•úß1
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleObjectProperty'.(¶Ö­¤8Ê™—„à1
 Z
 java:S1128
-"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8àÉ•úß1
+"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8Ê™—„à1
 `
-java:S1128">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8àÉ•úß1
+java:S1128">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8Ë™—„à1
 h
-java:S1128"KRemove this unused import 'javafx.scene.control.cell.PropertyValueFactory'.(àÎ¬õ8àÉ•úß1
+java:S1128"KRemove this unused import 'javafx.scene.control.cell.PropertyValueFactory'.(àÎ¬õ8Ë™—„à1
+M
+java:S10680"+Remove this unused "delayMS" private field.(Ø°Íúÿÿÿÿ8Ë™—„à1
