@@ -58,18 +58,19 @@
       <ScrollPane fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER">
          <content>
             <TableView fx:id="dataTable">
-              <columns>
+               <columns>
                   <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Date" />
-                <TableColumn fx:id="temperatureColumn" prefWidth="75.0" text="Température" />
-                <TableColumn fx:id="oxygeneColumn" minWidth="-1.0" prefWidth="111.0" text="Oxygène dissous" />
+                  <TableColumn fx:id="temperatureColumn" prefWidth="75.0" text="Température" />
+                  <TableColumn fx:id="oxygeneColumn" minWidth="-1.0" prefWidth="111.0" text="Oxygène dissous" />
                   <TableColumn fx:id="phColumn" prefWidth="89.0" text="Ph" />
-              </columns>
+               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
          </content>
       </ScrollPane>
+
    </center>
    <bottom>
       <VBox BorderPane.alignment="CENTER">

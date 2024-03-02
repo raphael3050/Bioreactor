@@ -14,12 +14,13 @@ import java.beans.PropertyChangeSupport;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
+import org.apache.logging.log4j.*;
 import org.json.simple.JSONObject;
 
 
@@ -27,12 +28,12 @@ public class Experimentation implements IContext {
     private List<Measures> measuresList;
     private Measures lastUpdate;
     private ScheduledExecutorService scheduler;
+    private PropertyChangeSupport pcs;
+    private int indice; //indice related to which file is being read.
+    private static final Logger LOGGER =  LogManager.getLogger( Experimentation.class );
     private enum Command {
         END_OF_TRANSMISSION
     }
-    private PropertyChangeSupport pcs;
-
-    private int indice; //indice related to which file is being read.
 
     public Experimentation(String filename) throws IOException {
         FileParser fp = new FileParser(filename);
@@ -66,29 +67,67 @@ public class Experimentation implements IContext {
      * @throws IOException: if there is a matter with the Stream.
      * @throws EndOfSimulationException: a specific message is thrown once the end of the simualtion is reached
      */
+//    @Override
+//    public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
+//        PrintStream os;
+//        try {
+//            os = new PrintStream(clientSocket.getOutputStream());
+//            // verify if the scheduler is running or not. if not, re-enable it.
+//            if (this.scheduler.isShutdown()){
+//                this.scheduler = Executors.newSingleThreadScheduledExecutor();
+//            }
+//
+//            //keep sending data until the simulation gets manually interrupted or the end of the simulation is reached
+//            this.scheduler.scheduleAtFixedRate( () -> {
+//
+//                //loop on the measures list
+//                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
+//                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+//                    os.println(jsonObject);
+//                    os.println('\n');
+//                    os.flush();
+//                    this.incrementIndice();
+//                }
+//                if (this.getIndice() == this.measuresList.size() - 1){
+//                    this.resetIndice();
+//                    os.println(Command.END_OF_TRANSMISSION);
+//                    this.scheduler.shutdown();
+//                }
+//            }, 0, delayS, TimeUnit.SECONDS);
+//
+//        } catch (IOException e) {
+//            throw new IOException(e.getMessage());
+//        }
+//    }
+
     @Override
     public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
-        PrintStream os;
         try {
-            os = new PrintStream(clientSocket.getOutputStream());
-            // verify if the scheduler is running or not. if not, re-enable it.
-            if (this.scheduler.isShutdown()){
+            LOGGER.info("Starting the simulation [play command received]");
+            // Création d'un writer pour écrire dans le flux de sortie du socket
+            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+
+            // Vérification si le planificateur est en cours d'exécution ou non. Si non, réactivez-le.
+            if (this.scheduler.isShutdown()) {
                 this.scheduler = Executors.newSingleThreadScheduledExecutor();
             }
 
-            //keep sending data until the simulation gets manually interrupted or the end of the simulation is reached
-            this.scheduler.scheduleAtFixedRate( () -> {
-
-                //loop on the measures list
-                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
-                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
-                    os.println(jsonObject);
-                    os.flush();
+            // Envoyer les données JSON à intervalles réguliers jusqu'à la fin de la simulation
+            this.scheduler.scheduleAtFixedRate(() -> {
+                // Parcourir la liste des mesures
+                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()) {
+                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.getIndice()));
+                    String jsonString = jsonObject.toString()+"\n";
+                    LOGGER.info("Sending the following JSON object: " + jsonString);
+                    writer.print(jsonString);
+                    writer.flush();
                     this.incrementIndice();
                 }
-                if (this.getIndice() == this.measuresList.size() - 1){
+                if (this.getIndice() == this.measuresList.size() - 1) {
+                    LOGGER.info("End of the simulation, sending the end of transmission command : "+ Command.END_OF_TRANSMISSION);
                     this.resetIndice();
-                    os.println(Command.END_OF_TRANSMISSION);
+                    writer.print(Command.END_OF_TRANSMISSION+"\n");
+                    writer.flush();
                     this.scheduler.shutdown();
                 }
             }, 0, delayS, TimeUnit.SECONDS);

@@ -2,12 +2,19 @@ package org.example.bioreactor.client;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -23,6 +30,7 @@ import java.util.ResourceBundle;
 public class ClientController implements Initializable, PropertyChangeListener {
     public Button connexionButton;
     public Button deconnexionButton;
+
     public TableView<Data> dataTable;
     public TableColumn<Data, String> dateColumn;
     public TableColumn<Data, String> temperatureColumn;
@@ -79,7 +87,9 @@ public class ClientController implements Initializable, PropertyChangeListener {
     @FXML
     protected void onPlayButtonClick() {
         if (myClt.isConnected()){
-            myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 3");
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 3");
+            }).start();
         } else {
             this.displayError("Connectez-vous au serveur pour lancer la simulation.");
         }
@@ -89,6 +99,7 @@ public class ClientController implements Initializable, PropertyChangeListener {
     protected void addDataToTable(Data data) {
         this.dataTable.getItems().add(data);
     }
+
 
 
     @Override
@@ -105,7 +116,8 @@ public class ClientController implements Initializable, PropertyChangeListener {
         this.connectionErrorMsg.setDisable(true);
         this.errorMsgContent.setText("");
 
-        // Tableau
+        // Table
+
         // Configurer les CellValueFactory pour chaque colonne
         dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate()));
         temperatureColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTemperature().toString()));
@@ -123,4 +135,5 @@ public class ClientController implements Initializable, PropertyChangeListener {
             }
         }
     }
+
 }

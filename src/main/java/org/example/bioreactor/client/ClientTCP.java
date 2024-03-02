@@ -78,7 +78,7 @@ public class ClientTCP  {
 		}
 	} 	
 	
-	public String transmettreChaine(String uneChaine) {        
+	public String transmettreChaine(String uneChaine) {
 		String dataReceived = null;
 		try {
 			System.out.println( "[Requete client] : " + uneChaine );
@@ -92,7 +92,8 @@ public class ClientTCP  {
 				if(dataReceived.equals(Command.END_OF_TRANSMISSION.toString()))
 					endOfTransmission = true;
 				else
-					dataStorage.addData(dataReceived);
+					if(!dataReceived.isEmpty())
+						dataStorage.addData(dataReceived);
 			}
 
 		} catch (UnknownHostException e) {
@@ -102,6 +103,8 @@ public class ClientTCP  {
 		}
 		return dataReceived;
 	}
+
+
 
 	public boolean isConnected() {
 		return isConnected;

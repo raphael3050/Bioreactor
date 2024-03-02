@@ -2,6 +2,8 @@ package org.example.bioreactor.client;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import com.fasterxml.jackson.databind.ObjectMapper;

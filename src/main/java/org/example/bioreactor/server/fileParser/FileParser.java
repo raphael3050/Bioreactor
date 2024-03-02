@@ -1,6 +1,9 @@
 package org.example.bioreactor.server.fileParser;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.bioreactor.server.ISensor;
+import org.example.bioreactor.server.experimentation.Experimentation;
 import org.example.bioreactor.server.measures.Measures;
 
 import java.io.File;
@@ -31,6 +34,9 @@ public class FileParser {
     private String filename;
     private List<Measures> measuresList;
 
+    private static final Logger LOGGER =  LogManager.getLogger( FileParser.class );
+
+
     public FileParser(String filename){
         this.filename = filename;
         this.measuresList = new ArrayList<>();
@@ -39,6 +45,7 @@ public class FileParser {
     public List<Measures> parse() throws FileNotFoundException, IOException {
 
         try {
+            LOGGER.info("Parsing the file " + this.filename);
             FileInputStream file = new FileInputStream(new File(this.filename));
             Workbook workbook = new XSSFWorkbook(file);
 
@@ -102,7 +109,7 @@ public class FileParser {
                 this.createMeasure(localDateTime.toString(), temperature, oxygen, pH, comment);
                 i++;
             }
-
+            LOGGER.info("File " + this.filename + " has been parsed successfully. Total of " + i + " measures have been extracted.");
         } catch (FileNotFoundException e){
             throw new FileNotFoundException("the file " + this.filename + " could not be found");
         } catch (IOException e){
