@@ -65,28 +65,38 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
                 //TODO ADJUST THE DATA
                 if (this.chaines[0].equals(Command.PLAY.toString())) {                //play
+                    if (this.etat == 1){ //make sure not to be able to play twice
+                        continue;
+                    }
                     this.etat = 1;
                     int delayMS = Integer.parseInt(this.chaines[1]);
                     this.myServer.getIContext().play(clientSocket, delayMS);
                     this.resetChaines();
 
                 } else if (chaines[0].equals(Command.PAUSE.toString())) {        //pause
-                    etat = 2;
-                    myServer.getIContext().pause(clientSocket);
+                    if (this.etat == 2){ //pausing twice does nothing
+                        continue;
+                    }
+                    this.etat = 2;
+                    this.myServer.getIContext().pause(clientSocket);
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.FORWARD.toString())) {      //forward
-                    etat = 3;
-                    myServer.getIContext().goForward();
+                    this.etat = 3;
+                    this.myServer.getIContext().goForward();
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.BACKWARD.toString())) {    //backwards
-                    etat = 4;
-                    myServer.getIContext().goBackwards();
+                    this.etat = 4;
+                    this.myServer.getIContext().goBackwards();
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.STOP.toString())) {         //stop
-                    etat = 0;
-                    myServer.getIContext().stop(clientSocket);
+                    if (this.etat == 5){ //stopping is allowed only once per playing process
+                        continue;
+                    }
+                    this.etat = 5;
+                    this.myServer.getIContext().stop(clientSocket);
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.END_OF_SIMULATION)){     //client leaves
+                    this.etat = 0;
                     System.out.println("End of the simulation with the client");
                     this.resetChaines();
                     break;
