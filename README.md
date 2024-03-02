@@ -1,6 +1,9 @@
 # Bioreactor
 
-![img.png](img.png)
+
+<div align="center">
+  <center><img src="img.png"></center>
+</div>
 
 
 Le thème de ce projet se situe dans le contexte d’un Jumeau Numérique de bioréacteur en
@@ -10,7 +13,6 @@ expérience d’un fermenteur avec les valeurs de température, oxygénation, et
 quelques autres paramètres que nous ignorerons). Notre émulateur va donc rejouer
 l’expérimentation en délivrant les données sélectionnées vers qui veut observer les
 résultats de l’expérience.
-
 
 ### Utilisation
 
