@@ -89,7 +89,7 @@ public class ClientController implements Initializable, PropertyChangeListener {
     protected void onPlayButtonClick() {
         if (myClt.isConnected()){
             new Thread(() -> {
-                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 3");
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 5"); //delay in ms
             }).start();
         } else {
             this.displayError("Connectez-vous au serveur pour lancer la simulation.");

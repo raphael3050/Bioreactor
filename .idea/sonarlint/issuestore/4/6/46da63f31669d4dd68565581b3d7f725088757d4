@@ -1,19 +1,22 @@
 
-G	java:S1067"+Replace this use of System.out by a logger.(Åş‘µ8ò›ğÎß1
-L	java:S106<"+Replace this use of System.out by a logger.(Ÿ¸Í»şÿÿÿÿ8õ›ğÎß1
-G	java:S106@"+Replace this use of System.err by a logger.(ºÅ¡8õ›ğÎß1
-G	java:S106B"+Replace this use of System.err by a logger.(ÿíŸÁ8ö›ğÎß1
-G	java:S106D"+Replace this use of System.err by a logger.(«Ÿøµ8ö›ğÎß1
-F	java:S106K"+Replace this use of System.out by a logger.(…€Õ%8÷›ğÎß1
-L	java:S106Q"+Replace this use of System.err by a logger.( ı¾Ÿùÿÿÿÿ8÷›ğÎß1
-L	java:S106X"+Replace this use of System.out by a logger.(¸ğƒŞùÿÿÿÿ8ù›ğÎß1
-G	java:S106_"+Replace this use of System.out by a logger.(´¼œ–8ù›ğÎß1
-G	java:S106h"+Replace this use of System.err by a logger.(ºÅ¡8ú›ğÎß1
-L	java:S106j"+Replace this use of System.err by a logger.(™ºîÓøÿÿÿÿ8ú›ğÎß1
+G	java:S1068"+Replace this use of System.out by a logger.(Åş‘µ8ìÒéûß1
+L	java:S106="+Replace this use of System.out by a logger.(Ÿ¸Í»şÿÿÿÿ8ïÒéûß1
+G	java:S106A"+Replace this use of System.err by a logger.(ºÅ¡8ïÒéûß1
+G	java:S106C"+Replace this use of System.err by a logger.(ÿíŸÁ8ğÒéûß1
+G	java:S106E"+Replace this use of System.err by a logger.(«Ÿøµ8ğÒéûß1
+F	java:S106L"+Replace this use of System.out by a logger.(…€Õ%8ñÒéûß1
+L	java:S106R"+Replace this use of System.err by a logger.( ı¾Ÿùÿÿÿÿ8òÒéûß1
+L	java:S106Y"+Replace this use of System.out by a logger.(¸ğƒŞùÿÿÿÿ8óÒéûß1
+G	java:S106`"+Replace this use of System.out by a logger.(´¼œ–8ôÒéûß1
+O
+java:S1135c"2Complete the task associated to this TODO comment.(ÏêÁ¦8õÒéûß1
+G	java:S106e"+Replace this use of System.out by a logger.(ê‘Ñ„8öÒéûß1
+G	java:S106o"+Replace this use of System.err by a logger.(ºÅ¡8öÒéûß1
+L	java:S106q"+Replace this use of System.err by a logger.(™ºîÓøÿÿÿÿ8÷Òéûß1
 K
 java:S1128
-".Remove this unused import 'java.util.Objects'.(¼¸õ›8û›ğÎß1
+".Remove this unused import 'java.util.Objects'.(¼¸õ›8øÒéûß1
 `
-java:S1128">Remove this unused import 'java.beans.PropertyChangeListener'.(ş¼ÃÀùÿÿÿÿ8û›ğÎß1
+java:S1128">Remove this unused import 'java.beans.PropertyChangeListener'.(ş¼ÃÀùÿÿÿÿ8øÒéûß1
 Y
-java:S1128"=Remove this unused import 'java.beans.PropertyChangeSupport'.(ë¥³08û›ğÎß1
+java:S1128"=Remove this unused import 'java.beans.PropertyChangeSupport'.(ë¥³08øÒéûß1

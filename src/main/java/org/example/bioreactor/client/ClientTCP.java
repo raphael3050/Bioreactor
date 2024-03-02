@@ -35,6 +35,7 @@ public class ClientTCP  {
 		FORWARD,
 		BACKWARD,
 		END_OF_TRANSMISSION,
+		END_OF_SIMULATION,
 	}
 	
 	/** Un client se connecte a un serveur identifie par un nom (unNomServeur), sur un port unNumero */
@@ -93,11 +94,17 @@ public class ClientTCP  {
 			{
 				dataReceived = socIn.readLine();
 				System.out.println( "[Réponse serveur] : " + dataReceived );
-				if(dataReceived.equals(Command.END_OF_TRANSMISSION.toString()))
+				if(dataReceived.equals(Command.END_OF_TRANSMISSION.toString()) || dataReceived.equals(Command.END_OF_SIMULATION.toString())) {
 					endOfTransmission = true;
-				else
-					if(!dataReceived.isEmpty())
+					//TODO manage END_OF_SIMULATION to display a message in the GUI?
+					if (dataReceived.equals(Command.END_OF_SIMULATION.toString())){
+						System.out.println("\u001B[36mEnd of the simulation\u001B[0m");
+					}
+				}else {
+					if (!dataReceived.isEmpty()){
 						dataStorage.addData(dataReceived);
+					}
+				}
 			}
 
 		} catch (UnknownHostException e) {

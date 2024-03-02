@@ -29,7 +29,8 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
         BACKWARD,
         STOP,
         END_OF_TRANSMISSION,
-        END_OF_SIMULATION
+        END_OF_SIMULATION,
+        BEGINNING_OF_SIMULATION,
     }
 
     public ConnectedClientThread( Socket aClientSocket , TCPServer aServer ) {
@@ -65,8 +66,8 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                 //TODO ADJUST THE DATA
                 if (this.chaines[0].equals(Command.PLAY.toString())) {                //play
                     this.etat = 1;
-                    int delayS = Integer.parseInt(this.chaines[1]);
-                    this.myServer.getIContext().play(clientSocket, delayS);
+                    int delayMS = Integer.parseInt(this.chaines[1]);
+                    this.myServer.getIContext().play(clientSocket, delayMS);
                     this.resetChaines();
 
                 } else if (chaines[0].equals(Command.PAUSE.toString())) {        //pause

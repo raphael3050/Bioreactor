@@ -32,7 +32,6 @@ public class Experimentation implements IContext {
     private PropertyChangeSupport pcs;
     private int indice; //indice related to which file is being read.
     private static final Logger LOGGER =  LogManager.getLogger( Experimentation.class );
-    private boolean lastTransmission;
 
     public Experimentation(String filename) throws IOException {
         FileParser fp = new FileParser(filename);
@@ -41,7 +40,6 @@ public class Experimentation implements IContext {
         this.indice = 0;
         scheduler = Executors.newSingleThreadScheduledExecutor();
         pcs = new PropertyChangeSupport(this);
-        this.lastTransmission = false;
     }
 
     public PropertyChangeSupport getPropertyChangeSupport() {
@@ -103,7 +101,7 @@ public class Experimentation implements IContext {
 */
 
     @Override
-    public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
+    public void play(Socket clientSocket, int delayMS) throws IOException, EndOfSimulationException {
         try {
             LOGGER.info("Starting the simulation [play command received]");
             // Création d'un writer pour écrire dans le flux de sortie du socket
@@ -128,11 +126,11 @@ public class Experimentation implements IContext {
                 if (this.getIndice() == this.measuresList.size() - 1) {
                     LOGGER.info("End of the simulation, sending the end of transmission command : "+ ConnectedClientThread.Command.END_OF_TRANSMISSION);
                     this.resetIndice();
-                    writer.print(ConnectedClientThread.Command.END_OF_TRANSMISSION+"\n");
+                    writer.print(ConnectedClientThread.Command.END_OF_SIMULATION+"\n");
                     writer.flush();
                     this.scheduler.shutdown();
                 }
-            }, 0, delayS, TimeUnit.SECONDS);
+            }, 0, delayMS, TimeUnit.MILLISECONDS);
 
         } catch (IOException e) {
             throw new IOException(e.getMessage());
@@ -157,8 +155,6 @@ public class Experimentation implements IContext {
                 e.printStackTrace();
             }
         }, 0, TimeUnit.SECONDS);
-        this.lastTransmission = true;
-        //todo remove?
     }
 
     public synchronized int getIndice(){
@@ -176,8 +172,6 @@ public class Experimentation implements IContext {
     public void stop(Socket clientSocket){
         this.pause(clientSocket);
         this.resetIndice();
-        //TODO RECONSIDER : useless
-        this.pcs.firePropertyChange("END_OF_TRANSMISSION", false, true);
     }
 
 

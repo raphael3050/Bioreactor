@@ -1,21 +1,21 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(íÇ¸ì8ƒÒùß1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(íÇ¸ì8¤¶îúß1
 o
-java:S3776."RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(“–ış8‘…Òùß1
+java:S3776/"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(“–ış8Ç·îúß1
 W
-java:S1161.":Add the "@Override" annotation above this method signature(“–ış8“…Òùß1
-G	java:S1068"+Replace this use of System.out by a logger.(Éãº8–…Òùß1
+java:S1161/":Add the "@Override" annotation above this method signature(“–ış8È·îúß1
+G	java:S1069"+Replace this use of System.out by a logger.(Éãº8Ê·îúß1
 T
-java:S1135:"2Complete the task associated to this TODO comment.(’¨ù·úÿÿÿÿ8–…Òùß1
+java:S1135;"2Complete the task associated to this TODO comment.(’¨ù·úÿÿÿÿ8Ê·îúß1
 X
-java:S1117<";Rename "chaines" which hides the field declared at line 23.(¸Œº¶8–…Òùß1
-G	java:S106="+Replace this use of System.out by a logger.(ïêÄ¯8—…Òùß1
+java:S1117=";Rename "chaines" which hides the field declared at line 23.(¸Œº¶8Ë·îúß1
+G	java:S106>"+Replace this use of System.out by a logger.(ïêÄ¯8Ë·îúß1
 T
-java:S1135A"2Complete the task associated to this TODO comment.(Æ×’ÿÿÿÿÿ8˜…Òùß1
+java:S1135B"2Complete the task associated to this TODO comment.(Æ×’ÿÿÿÿÿ8Ì·îúß1
 x
-java:S2159X"VRemove this call to "equals"; comparisons between unrelated types always return false.(Ã«á§ùÿÿÿÿ8ï‰Óùß1
-G	java:S106Y"+Replace this use of System.out by a logger.(˜³•ş8›…Òùß1
+java:S2159Y"VRemove this call to "equals"; comparisons between unrelated types always return false.(Ã«á§ùÿÿÿÿ8Î·îúß1
+G	java:S106Z"+Replace this use of System.out by a logger.(˜³•ş8Ï·îúß1
 8
-java:S1116t"Remove this empty statement.(³øÍn8œ…Òùß1
+java:S1116u"Remove this empty statement.(³øÍn8Ğ·îúß1
 y
-java:S2159"VRemove this call to "equals"; comparisons between unrelated types always return false.(èÅœ¹øÿÿÿÿ8÷ÈÓùß1
+java:S2159"VRemove this call to "equals"; comparisons between unrelated types always return false.(èÅœ¹øÿÿÿÿ8Ò·îúß1

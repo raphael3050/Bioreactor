@@ -1,7 +1,7 @@
 
 R
 java:S1066š"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8›Ò½ùß1
-r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8œÒ½ùß1
+r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8±§úß1
 x
 java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8œÒ½ùß1
 
@@ -27,15 +27,15 @@ java:S1104+"^Make connectionErrorMsg a static final constant or non-public and 
 x
 java:S1104,"VMake playButton a static final constant or non-public and provide accessors if needed.(£Å±Øşÿÿÿÿ8Ò½ùß1
 t
-java:S1104-"WMake pauseButton a static final constant or non-public and provide accessors if needed.(‰ÍŒ8Ò½ùß1
+java:S1104-"WMake pauseButton a static final constant or non-public and provide accessors if needed.(‰ÍŒ8²§úß1
 w
-java:S1104."[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8Ò½ùß1
+java:S1104."[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8²§úß1
 I
-java:S1602[",Remove useless curly braces around statement(¥—ığ8ÅÒ½ùß1
+java:S1602[",Remove useless curly braces around statement(¥—ığ8Ï§úß1
 I
-java:S1602f",Remove useless curly braces around statement(¥—ığ8ÆÒ½ùß1
+java:S1602f",Remove useless curly braces around statement(¥—ığ8Ğ§úß1
 I
-java:S1602q",Remove useless curly braces around statement(¥—ığ8‡“şùß1
+java:S1602q",Remove useless curly braces around statement(¥—ığ8Ò§úß1
 Z
 java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8ßÉ•úß1
 ]
