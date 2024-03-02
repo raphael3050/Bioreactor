@@ -34,6 +34,7 @@ public class Experimentation implements IContext {
     private enum Command {
         END_OF_TRANSMISSION
     }
+    private boolean lastTransmission;
 
     public Experimentation(String filename) throws IOException {
         FileParser fp = new FileParser(filename);
@@ -42,6 +43,7 @@ public class Experimentation implements IContext {
         this.indice = 0;
         scheduler = Executors.newSingleThreadScheduledExecutor();
         pcs = new PropertyChangeSupport(this);
+        this.lastTransmission = false;
     }
 
     public PropertyChangeSupport getPropertyChangeSupport() {
@@ -67,38 +69,40 @@ public class Experimentation implements IContext {
      * @throws IOException: if there is a matter with the Stream.
      * @throws EndOfSimulationException: a specific message is thrown once the end of the simualtion is reached
      */
-//    @Override
-//    public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
-//        PrintStream os;
-//        try {
-//            os = new PrintStream(clientSocket.getOutputStream());
-//            // verify if the scheduler is running or not. if not, re-enable it.
-//            if (this.scheduler.isShutdown()){
-//                this.scheduler = Executors.newSingleThreadScheduledExecutor();
-//            }
-//
-//            //keep sending data until the simulation gets manually interrupted or the end of the simulation is reached
-//            this.scheduler.scheduleAtFixedRate( () -> {
-//
-//                //loop on the measures list
-//                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
-//                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
-//                    os.println(jsonObject);
-//                    os.println('\n');
-//                    os.flush();
-//                    this.incrementIndice();
-//                }
-//                if (this.getIndice() == this.measuresList.size() - 1){
-//                    this.resetIndice();
-//                    os.println(Command.END_OF_TRANSMISSION);
-//                    this.scheduler.shutdown();
-//                }
-//            }, 0, delayS, TimeUnit.SECONDS);
-//
-//        } catch (IOException e) {
-//            throw new IOException(e.getMessage());
-//        }
-//    }
+/*
+    @Override
+    public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
+        PrintStream os;
+        try {
+            os = new PrintStream(clientSocket.getOutputStream());
+            // verify if the scheduler is running or not. if not, re-enable it.
+            if (this.scheduler.isShutdown()){
+                this.scheduler = Executors.newSingleThreadScheduledExecutor();
+            }
+
+            //keep sending data until the simulation gets manually interrupted or the end of the simulation is reached
+            this.scheduler.scheduleAtFixedRate( () -> {
+
+                //loop on the measures list
+                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
+                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+                    os.println(jsonObject);
+                    os.println('\n');
+                    os.flush();
+                    this.incrementIndice();
+                }
+                if (this.getIndice() == this.measuresList.size() - 1){
+                    this.resetIndice();
+                    os.println(Command.END_OF_TRANSMISSION);
+                    this.scheduler.shutdown();
+                }
+            }, 0, delayS, TimeUnit.SECONDS);
+
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        }
+    }
+*/
 
     @Override
     public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
@@ -110,6 +114,13 @@ public class Experimentation implements IContext {
             // Vérification si le planificateur est en cours d'exécution ou non. Si non, réactivez-le.
             if (this.scheduler.isShutdown()) {
                 this.scheduler = Executors.newSingleThreadScheduledExecutor();
+            }
+
+            if (this.lastTransmission){
+                writer.println(Command.END_OF_TRANSMISSION);
+                writer.flush();
+                this.lastTransmission = false;
+                this.scheduler.shutdown();
             }
 
             // Envoyer les données JSON à intervalles réguliers jusqu'à la fin de la simulation
@@ -143,7 +154,9 @@ public class Experimentation implements IContext {
      */
     @Override
     public void pause(){
-        this.scheduler.shutdown();
+        this.lastTransmission = true;
+        //todo remove?
+        //this.scheduler.shutdown();
     }
 
     public synchronized int getIndice(){
@@ -161,6 +174,7 @@ public class Experimentation implements IContext {
     public void stop(){
         this.scheduler.shutdown();
         this.resetIndice();
+        //TODO RECONSIDER : useless
         this.pcs.firePropertyChange("END_OF_TRANSMISSION", false, true);
     }
 

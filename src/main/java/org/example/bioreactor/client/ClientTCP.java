@@ -53,7 +53,7 @@ public class ClientTCP  {
 			socOut = new PrintStream(socketServeur.getOutputStream());
 			socIn = new BufferedReader ( 
 					new InputStreamReader (socketServeur.getInputStream()));
-			System.out.println("Connexion établie");
+			System.out.println("\u001B[32mConnexion établie\u001B[0m");
 			this.isConnected = true;
 			ok = true;
 		} catch (UnknownHostException e) {

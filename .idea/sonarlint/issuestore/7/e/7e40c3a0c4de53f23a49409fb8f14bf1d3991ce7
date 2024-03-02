@@ -1,0 +1,18 @@
+
+g	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™öôÕß1
+†
+java:S1488?"iImmediately return this expression instead of assigning it to the temporary variable "formattedDateTime".(İ¹œ®8ô¾Ëõß1
+u
+java:S1450"SRemove the "date" field and declare it as a local variable in the relevant methods.(°‡è›üÿÿÿÿ8»áËõß1
+]	java:S125-"<This block of commented-out lines of code should be removed.(‡Ü¯ôùÿÿÿÿ8¶öôÕß1
+G	java:S1061"+Replace this use of System.err by a logger.(”ùµì8·öôÕß1
+m
+java:S1128"PRemove this unused import 'com.fasterxml.jackson.databind.JsonMappingException'.(÷™‹Í8¹¡Îõß1
+i
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleDoubleProperty'.(Ğ†Üıúÿÿÿÿ8º¡Îõß1
+d
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleStringProperty'.(ûĞùÑ8º¡Îõß1
+Y
+java:S1128"7Remove this unused import 'org.json.simple.JSONObject'.(‚ƒç‘ÿÿÿÿÿ8»¡Îõß1
+[
+java:S1128">Remove this unused import 'org.json.simple.parser.JSONParser'.(õø²¹8»¡Îõß1
