@@ -1,6 +1,6 @@
 
 R
-java:S1066"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8›Ò½ùß1
+java:S1066š"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8›Ò½ùß1
 r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8œÒ½ùß1
 x
 java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8œÒ½ùß1
@@ -34,3 +34,20 @@ I
 java:S1602[",Remove useless curly braces around statement(¥—ığ8ÅÒ½ùß1
 I
 java:S1602f",Remove useless curly braces around statement(¥—ığ8ÆÒ½ùß1
+I
+java:S1602q",Remove useless curly braces around statement(¥—ığ8‡“şùß1
+Z
+java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8ßÉ•úß1
+]
+java:S1128";Remove this unused import 'javafx.beans.property.Property'.(ìÜ²öøÿÿÿÿ8ßÉ•úß1
+i
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleDoubleProperty'.(Ğ†Üıúÿÿÿÿ8ßÉ•úß1
+d
+java:S1128"GRemove this unused import 'javafx.beans.property.SimpleObjectProperty'.(¶Ö­¤8àÉ•úß1
+Z
+java:S1128
+"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8àÉ•úß1
+`
+java:S1128">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8àÉ•úß1
+h
+java:S1128"KRemove this unused import 'javafx.scene.control.cell.PropertyValueFactory'.(àÎ¬õ8àÉ•úß1

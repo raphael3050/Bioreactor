@@ -103,7 +103,18 @@ public class ClientController implements Initializable, PropertyChangeListener {
                 myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PAUSE));
             }).start();
         } else {
-            this.displayError("Connectez-vous au serveur pour lancer la simulation.");
+            this.displayError("La simulation n'est pas en cours d'exécution.");
+        }
+    }
+
+    @FXML
+    protected void onStopButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.STOP));
+            }).start();
+        } else {
+            this.displayError("Vous n'êtes pas connecté.");
         }
     }
 

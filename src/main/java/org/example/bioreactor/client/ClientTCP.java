@@ -31,6 +31,9 @@ public class ClientTCP  {
 	public enum Command {
 		PLAY,
 		PAUSE,
+		STOP,
+		FORWARD,
+		BACKWARD,
 		END_OF_TRANSMISSION,
 	}
 	
