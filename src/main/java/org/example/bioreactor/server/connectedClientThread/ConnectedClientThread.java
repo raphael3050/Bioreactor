@@ -18,7 +18,7 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
     private Socket clientSocket;
     private TCPServer myServer;
-    int etat = 0;
+    int etat = 5; //stop state
     private boolean endOfTransmission = false;
     private String [] chaines;
 
@@ -58,7 +58,7 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
             System.out.println( "Client Thread " );
 
             // TODO : Debug this section, it is not working as expected
-            while ( (inputReq = is.readLine()) != null && etat != 3 ) {
+            while ( (inputReq = is.readLine()) != null && etat != 0 ) {
                 String[] chaines = inputReq.split(" ");
                 System.out.println("Message reçu : "+Arrays.toString(chaines));
                 this.chaines = inputReq.split(" ");
@@ -83,14 +83,26 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                     this.resetChaines();
                 } else if (chaines[0].equals(Command.NEXT.toString())) {      //forward
                     this.etat = 3;
-                    data = this.myServer.getIContext().goForward(clientSocket);
-                    this.resetChaines();
+                    try {
+                        data = this.myServer.getIContext().goForward(clientSocket);
+                        os.println(data);
+                    } catch (EndOfSimulationException err){ //manage when the user tries to go after last indice
+                        os.println(Command.END_OF_SIMULATION);
+                    } finally{
+                        os.println(Command.END_OF_TRANSMISSION);
+                        this.resetChaines();
+                    }
                 } else if (chaines[0].equals(Command.PREVIOUS.toString())) {    //backwards
                     this.etat = 4;
-                    data = this.myServer.getIContext().goBackwards();
-                    os.println(data);
-                    os.println(Command.END_OF_TRANSMISSION);
-                    this.resetChaines();
+                    try {
+                        data = this.myServer.getIContext().goBackwards();
+                        os.println(data);
+                    } catch (StartOfSimulationException err){ //manage when the user tries to go before indice 0
+                        os.println(Command.BEGINNING_OF_SIMULATION);
+                    } finally {
+                        os.println(Command.END_OF_TRANSMISSION);
+                        this.resetChaines();
+                    }
                 } else if (chaines[0].equals(Command.STOP.toString())) {         //stop
                     if (this.etat == 5){ //stopping is allowed only once per playing process
                         continue;
@@ -121,7 +133,7 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
 
         } catch (EndOfSimulationException e){
             String message = e.getMessage();
-            os.println("INFO " + message);
+            os.println(message);
             os.println(Command.END_OF_TRANSMISSION);
             os.close();
             try {
@@ -130,15 +142,6 @@ public class ConnectedClientThread extends Thread implements PropertyChangeListe
                 err.printStackTrace();;
             }
 
-        } catch (StartOfSimulationException e){
-            String message = e.getMessage();
-            os.println("INFO " + message);
-            os.close();
-            try {
-                is.close();
-            } catch (IOException err){
-                err.printStackTrace();
-            }
         } catch (NumberFormatException e){
             os.println("The delay you have sent should be an integer");
             os.close();

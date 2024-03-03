@@ -1,9 +1,9 @@
 
 y
-java:S1192z"\Define a constant instead of duplicating this literal "Vous n'Ãªtes pas connectÃ©." 3 times.(öşš¨8ã™İˆà1
+java:S1192z"\Define a constant instead of duplicating this literal "Vous n'Ãªtes pas connectÃ©." 3 times.(öşš¨8Ò¼º‹à1
 R
 java:S1066³"/Merge this if statement with the enclosing one.(ÚÉºĞùÿÿÿÿ8ä™İˆà1
-r	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8ä™İˆà1
+r	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅŸÀ£ûÿÿÿÿ8Ó¼º‹à1
 x
 java:S1104"[Make connexionButton a static final constant or non-public and provide accessors if needed.( î„ã8å™İˆà1
 
@@ -31,37 +31,22 @@ java:S1104,"VMake playButton a static final constant or non-public and provide 
 t
 java:S1104-"WMake pauseButton a static final constant or non-public and provide accessors if needed.(‰ÍŒ8å™İˆà1
 |
-java:S1104."ZMake previousButton a static final constant or non-public and provide accessors if needed.(£íÆ“ÿÿÿÿÿ8å™İˆà1
+java:S1104."ZMake previousButton a static final constant or non-public and provide accessors if needed.(£íÆ“ÿÿÿÿÿ8Ô¼º‹à1
 s
-java:S1104/"VMake nextButton a static final constant or non-public and provide accessors if needed.(Ñµ…Ú8å™İˆà1
+java:S1104/"VMake nextButton a static final constant or non-public and provide accessors if needed.(Ñµ…Ú8Ô¼º‹à1
 w
-java:S11040"[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8å™İˆà1
+java:S11040"[Make errorMsgContent a static final constant or non-public and provide accessors if needed.(ª§õ8Ô¼º‹à1
 I
-java:S1602^",Remove useless curly braces around statement(¥—ığ8‚šİˆà1
+java:S1602^",Remove useless curly braces around statement(¥—ığ8î¼º‹à1
 N
-java:S1135_"2Complete the task associated to this TODO comment.(é‹–8ƒšİˆà1
+java:S1135_"2Complete the task associated to this TODO comment.(é‹–8î¼º‹à1
 I
-java:S1602k",Remove useless curly braces around statement(¥—ığ8„šİˆà1
+java:S1602k",Remove useless curly braces around statement(¥—ığ8ï¼º‹à1
 I
-java:S1602v",Remove useless curly braces around statement(¥—ığ8…šİˆà1
+java:S1602v",Remove useless curly braces around statement(¥—ığ8ï¼º‹à1
 J
-java:S1602",Remove useless curly braces around statement(¥—ığ8‡šİˆà1
+java:S1602",Remove useless curly braces around statement(¥—ığ8ğ¼º‹à1
 J
-java:S1602Œ",Remove useless curly braces around statement(¥—ığ8–äˆà1
-Z
-java:S1128"8Remove this unused import 'javafx.application.Platform'.(§“óùÿÿÿÿ8šİˆà1
-]
-java:S1128";Remove this unused import 'javafx.beans.property.Property'.(ìÜ²öøÿÿÿÿ8šİˆà1
-i
-java:S1128"GRemove this unused import 'javafx.beans.property.SimpleDoubleProperty'.(Ğ†Üıúÿÿÿÿ8šİˆà1
-d
-java:S1128"GRemove this unused import 'javafx.beans.property.SimpleObjectProperty'.(¶Ö­¤8šİˆà1
-Z
-java:S1128
-"=Remove this unused import 'javafx.collections.FXCollections'.(´¶²Æ8šİˆà1
-`
-java:S1128">Remove this unused import 'javafx.collections.ObservableList'.(ÄÜ€éüÿÿÿÿ8šİˆà1
-h
-java:S1128"KRemove this unused import 'javafx.scene.control.cell.PropertyValueFactory'.(àÎ¬õ8šİˆà1
+java:S1602Œ",Remove useless curly braces around statement(¥—ığ8ñ¼º‹à1
 M
-java:S10682"+Remove this unused "delayMS" private field.(Ø°Íúÿÿÿÿ8šİˆà1
+java:S10682"+Remove this unused "delayMS" private field.(Ø°Íúÿÿÿÿ8õ¼º‹à1

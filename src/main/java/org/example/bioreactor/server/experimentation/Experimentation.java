@@ -187,14 +187,6 @@ public class Experimentation implements IContext {
         }
         this.indice++;
         JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
-        try {
-            PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
-            writer.println(jsonObject.toString());
-            writer.println(ConnectedClientThread.Command.END_OF_TRANSMISSION);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
         return jsonObject.toString();
     }
 

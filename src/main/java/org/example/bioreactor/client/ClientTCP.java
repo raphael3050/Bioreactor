@@ -37,6 +37,7 @@ public class ClientTCP  {
 		PREVIOUS,
 		NEXT,
 		END_OF_TRANSMISSION,
+		BEGINNING_OF_SIMULATION,
 		END_OF_SIMULATION,
 	}
 	
@@ -115,13 +116,15 @@ public class ClientTCP  {
 			{
 				dataReceived = socIn.readLine();
 				System.out.println( "[Réponse serveur] : " + dataReceived );
-				if(dataReceived.equals(Command.END_OF_TRANSMISSION.toString()) || dataReceived.equals(Command.END_OF_SIMULATION.toString())) {
+				if(dataReceived.equals(Command.END_OF_TRANSMISSION.toString()) || dataReceived.equals(Command.END_OF_SIMULATION.toString()) || dataReceived.equals(Command.BEGINNING_OF_SIMULATION.toString())) {
 					endOfTransmission = true;
 					//TODO manage END_OF_SIMULATION to display a message in the GUI?
 					if (dataReceived.equals(Command.END_OF_SIMULATION.toString())){
 						System.out.println("\u001B[36mEnd of the simulation\u001B[0m");
+					} else if (dataReceived.equals(Command.BEGINNING_OF_SIMULATION.toString())){
+						System.out.println("\u001B[36mBeginning of the simulation\u001B[0m");
 					}
-				}else {
+				} else {
 					if (!dataReceived.isEmpty()){
 						dataStorage.addData(dataReceived);
 					}
