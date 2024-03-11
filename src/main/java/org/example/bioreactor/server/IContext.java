@@ -11,10 +11,10 @@ import java.net.Socket;
 public interface IContext {
 
     void play(Socket clientSocket, int delayMS) throws EndOfSimulationException, IOException;
-    void pause();
-    void stop();
-    Measures goForward() throws EndOfSimulationException;
-    Measures goBackwards() throws StartOfSimulationException;
+    void pause(Socket clientSocket);
+    void stop(Socket clientSocket);
+    String goForward(Socket clientSocket) throws EndOfSimulationException;
+    String goBackwards() throws StartOfSimulationException;
     PropertyChangeSupport getPropertyChangeSupport();
 
 }

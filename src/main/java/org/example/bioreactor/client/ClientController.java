@@ -42,8 +42,12 @@ public class ClientController implements Initializable, PropertyChangeListener {
     public HBox messageLoggerHbox;
     public TextFlow connectionErrorMsg;
     public Button playButton;
+    public Button pauseButton;
+    public Button previousButton;
+    public Button nextButton;
     public Text errorMsgContent;
     private ClientTCP myClt;
+    private int delayMS;
 
     @FXML
     protected void onDeconnectionButtonClick() {
@@ -88,7 +92,9 @@ public class ClientController implements Initializable, PropertyChangeListener {
     protected void onPlayButtonClick() {
         if (myClt.isConnected()){
             new Thread(() -> {
-                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 3");
+                //todo give the choice to the user to change the delay between the receipt of two measures
+                //use this.delayMS
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PLAY)+" 5"); //delay in ms
             }).start();
         } else {
             this.displayError("Connectez-vous au serveur pour lancer la simulation.");
@@ -96,11 +102,53 @@ public class ClientController implements Initializable, PropertyChangeListener {
     }
 
     @FXML
+    protected void onPauseButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PAUSE));
+            }).start();
+        } else {
+            this.displayError("La simulation n'est pas en cours d'exécution.");
+        }
+    }
+
+    @FXML
+    protected void onStopButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.STOP));
+            }).start();
+        } else {
+            this.displayError("Vous n'êtes pas connecté.");
+        }
+    }
+
+    @FXML
+    protected void onPreviousButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.PREVIOUS));
+            }).start();
+        } else {
+            this.displayError("Vous n'êtes pas connecté.");
+        }
+    }
+
+    @FXML
+    protected void onNextButtonClick() {
+        if (myClt.isConnected()){
+            new Thread(() -> {
+                myClt.transmettreChaine(String.valueOf(ClientTCP.Command.NEXT));
+            }).start();
+        } else {
+            this.displayError("Vous n'êtes pas connecté.");
+        }
+    }
+
+    @FXML
     protected void addDataToTable(Data data) {
         this.dataTable.getItems().add(data);
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

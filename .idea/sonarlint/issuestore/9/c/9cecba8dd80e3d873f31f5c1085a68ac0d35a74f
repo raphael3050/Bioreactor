@@ -1,21 +1,26 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(íÇ¸ì8Á±Ìß1
-o
-java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(“–ış8²ğÎß1
+z	java:S135="YReduce the total number of break and continue statements in this loop to use at most one.(í‰ß£úÿÿÿÿ8îÄÛŸà1
 W
-java:S1161*":Add the "@Override" annotation above this method signature(“–ış8´ğÎß1
-G	java:S1064"+Replace this use of System.out by a logger.(Éãº8¹ğÎß1
+java:S1141V"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8îÄÛŸà1
+W
+java:S1141a"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8îÄÛŸà1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(íÇ¸ì8ïÄÛŸà1
+o
+java:S3776/"RRefactor this method to reduce its Cognitive Complexity from 33 to the 15 allowed.(“–ış8–ÆÛŸà1
+W
+java:S1161/":Add the "@Override" annotation above this method signature(“–ış8–ÆÛŸà1
+G	java:S106:"+Replace this use of System.out by a logger.(Éãº8˜ÆÛŸà1
 T
-java:S11356"2Complete the task associated to this TODO comment.(’¨ù·úÿÿÿÿ8¹ğÎß1
+java:S1135<"2Complete the task associated to this TODO comment.(’¨ù·úÿÿÿÿ8˜ÆÛŸà1
 X
-java:S11178";Rename "chaines" which hides the field declared at line 23.(¸Œº¶8ºğÎß1
-G	java:S1069"+Replace this use of System.out by a logger.(ïêÄ¯8»ğÎß1
+java:S1117>";Rename "chaines" which hides the field declared at line 23.(¸Œº¶8˜ÆÛŸà1
+G	java:S106?"+Replace this use of System.out by a logger.(ïêÄ¯8™ÆÛŸà1
 T
-java:S1135="2Complete the task associated to this TODO comment.(Æ×’ÿÿÿÿÿ8¼ğÎß1
+java:S1135C"2Complete the task associated to this TODO comment.(Æ×’ÿÿÿÿÿ8™ÆÛŸà1
 x
-java:S2159T"VRemove this call to "equals"; comparisons between unrelated types always return false.(Ã«á§ùÿÿÿÿ8ÁğÎß1
-G	java:S106U"+Replace this use of System.out by a logger.(˜³•ş8ÁğÎß1
-8
-java:S1116p"Remove this empty statement.(³øÍn8ÃğÎß1
+java:S2159q"VRemove this call to "equals"; comparisons between unrelated types always return false.(Ã«á§ùÿÿÿÿ8œÆÛŸà1
+G	java:S106s"+Replace this use of System.out by a logger.(˜³•ş8œÆÛŸà1
+9
+java:S1116"Remove this empty statement.(³øÍn8ÆÛŸà1
 y
-java:S2159‰"VRemove this call to "equals"; comparisons between unrelated types always return false.(èÅœ¹øÿÿÿÿ8ÆğÎß1
+java:S2159"VRemove this call to "equals"; comparisons between unrelated types always return false.(èÅœ¹øÿÿÿÿ8ÆÛŸà1

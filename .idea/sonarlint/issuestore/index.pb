@@ -57,3 +57,7 @@ n
 >src/main/java/org/example/bioreactor/server/sensor/Oxygen.java,e/1/e1e90320151fb1c956bd1ae3538422a8e05e9bce
 N
 src/main/java/module-info.java,1/c/1c89a5491fbfda3fb050196d6a239f20200296e7
+o
+?src/main/java/org/example/bioreactor/client/JsonDataParser.java,7/e/7e40c3a0c4de53f23a49409fb8f14bf1d3991ce7
+B
+src/bioreactor.iml,7/8/78eaaa325e3af9975ed4502bee4483f9fa95dc69

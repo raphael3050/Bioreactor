@@ -2,6 +2,7 @@ package org.example.bioreactor.server.experimentation;
 
 import org.example.bioreactor.server.IContext;
 import org.example.bioreactor.server.ISensor;
+import org.example.bioreactor.server.connectedClientThread.ConnectedClientThread;
 import org.example.bioreactor.server.fileParser.FileParser;
 import org.example.bioreactor.server.measures.Measures;
 import org.example.bioreactor.server.sensor.Oxygen;
@@ -31,9 +32,6 @@ public class Experimentation implements IContext {
     private PropertyChangeSupport pcs;
     private int indice; //indice related to which file is being read.
     private static final Logger LOGGER =  LogManager.getLogger( Experimentation.class );
-    private enum Command {
-        END_OF_TRANSMISSION
-    }
 
     public Experimentation(String filename) throws IOException {
         FileParser fp = new FileParser(filename);
@@ -67,41 +65,43 @@ public class Experimentation implements IContext {
      * @throws IOException: if there is a matter with the Stream.
      * @throws EndOfSimulationException: a specific message is thrown once the end of the simualtion is reached
      */
-//    @Override
-//    public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
-//        PrintStream os;
-//        try {
-//            os = new PrintStream(clientSocket.getOutputStream());
-//            // verify if the scheduler is running or not. if not, re-enable it.
-//            if (this.scheduler.isShutdown()){
-//                this.scheduler = Executors.newSingleThreadScheduledExecutor();
-//            }
-//
-//            //keep sending data until the simulation gets manually interrupted or the end of the simulation is reached
-//            this.scheduler.scheduleAtFixedRate( () -> {
-//
-//                //loop on the measures list
-//                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
-//                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
-//                    os.println(jsonObject);
-//                    os.println('\n');
-//                    os.flush();
-//                    this.incrementIndice();
-//                }
-//                if (this.getIndice() == this.measuresList.size() - 1){
-//                    this.resetIndice();
-//                    os.println(Command.END_OF_TRANSMISSION);
-//                    this.scheduler.shutdown();
-//                }
-//            }, 0, delayS, TimeUnit.SECONDS);
-//
-//        } catch (IOException e) {
-//            throw new IOException(e.getMessage());
-//        }
-//    }
-
+/*
     @Override
     public void play(Socket clientSocket, int delayS) throws IOException, EndOfSimulationException {
+        PrintStream os;
+        try {
+            os = new PrintStream(clientSocket.getOutputStream());
+            // verify if the scheduler is running or not. if not, re-enable it.
+            if (this.scheduler.isShutdown()){
+                this.scheduler = Executors.newSingleThreadScheduledExecutor();
+            }
+
+            //keep sending data until the simulation gets manually interrupted or the end of the simulation is reached
+            this.scheduler.scheduleAtFixedRate( () -> {
+
+                //loop on the measures list
+                if (this.getIndice() < this.measuresList.size() && !this.scheduler.isShutdown()){
+                    JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+                    os.println(jsonObject);
+                    os.println('\n');
+                    os.flush();
+                    this.incrementIndice();
+                }
+                if (this.getIndice() == this.measuresList.size() - 1){
+                    this.resetIndice();
+                    os.println(Command.END_OF_TRANSMISSION);
+                    this.scheduler.shutdown();
+                }
+            }, 0, delayS, TimeUnit.SECONDS);
+
+        } catch (IOException e) {
+            throw new IOException(e.getMessage());
+        }
+    }
+*/
+
+    @Override
+    public void play(Socket clientSocket, int delayMS) throws IOException, EndOfSimulationException {
         try {
             LOGGER.info("Starting the simulation [play command received]");
             // Création d'un writer pour écrire dans le flux de sortie du socket
@@ -124,13 +124,13 @@ public class Experimentation implements IContext {
                     this.incrementIndice();
                 }
                 if (this.getIndice() == this.measuresList.size() - 1) {
-                    LOGGER.info("End of the simulation, sending the end of transmission command : "+ Command.END_OF_TRANSMISSION);
+                    LOGGER.info("End of the simulation, sending the end of transmission command : "+ ConnectedClientThread.Command.END_OF_TRANSMISSION);
                     this.resetIndice();
-                    writer.print(Command.END_OF_TRANSMISSION+"\n");
+                    writer.print(ConnectedClientThread.Command.END_OF_SIMULATION+"\n");
                     writer.flush();
                     this.scheduler.shutdown();
                 }
-            }, 0, delayS, TimeUnit.SECONDS);
+            }, 0, delayMS, TimeUnit.MILLISECONDS);
 
         } catch (IOException e) {
             throw new IOException(e.getMessage());
@@ -142,8 +142,19 @@ public class Experimentation implements IContext {
      * Pauses the simulation, keeps the indice at the same place.
      */
     @Override
-    public void pause(){
+    public void pause(Socket clientSocket){
         this.scheduler.shutdown();
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
+        this.scheduler.schedule(() -> {
+            try{
+                PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true);
+                writer.println(ConnectedClientThread.Command.END_OF_TRANSMISSION);
+                this.scheduler.shutdown();
+            } catch (IOException e){
+                //todo raise specific error?
+                e.printStackTrace();
+            }
+        }, 0, TimeUnit.SECONDS);
     }
 
     public synchronized int getIndice(){
@@ -158,10 +169,9 @@ public class Experimentation implements IContext {
      * Interrupts the simulation. Resets the indice of lecture.
      */
     @Override
-    public void stop(){
-        this.scheduler.shutdown();
+    public void stop(Socket clientSocket){
+        this.pause(clientSocket);
         this.resetIndice();
-        this.pcs.firePropertyChange("END_OF_TRANSMISSION", false, true);
     }
 
 
@@ -171,12 +181,13 @@ public class Experimentation implements IContext {
      * @throws EndOfSimulationException: a message to specify that the user reached the end of the simulation
      */
     @Override
-    public Measures goForward() throws EndOfSimulationException {
+    public String goForward(Socket clientSocket) throws EndOfSimulationException {
         if (this.indice == this.measuresList.size() - 1){
             throw new EndOfSimulationException("INFO: The simulation reached its last values");
         }
         this.indice++;
-        return this.measuresList.get(this.indice);
+        JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+        return jsonObject.toString();
     }
 
 
@@ -187,12 +198,13 @@ public class Experimentation implements IContext {
      * @throws StartOfSimulationException: a specific message explaining that the beginning of the list was reached
      */
     @Override
-    public Measures goBackwards() throws StartOfSimulationException {
+    public String goBackwards() throws StartOfSimulationException {
         if (this.indice == 0) {
             throw new StartOfSimulationException("INFO: The simulation reached its first measure");
         }
         this.indice--;
-        return this.measuresList.get(this.indice);
+        JSONObject jsonObject = this.convertToJSON(this.measuresList.get(this.indice));
+        return jsonObject.toString();
     }
 
 
